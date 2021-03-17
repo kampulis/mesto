@@ -25,7 +25,8 @@ header
 }
 
 .header__line {
-  width: 320px;
+  min-width: 320px;
+  width: 100%;
   opacity: 0.7;
   border: 1px solid #545454;
 }
@@ -40,9 +41,6 @@ header
     max-height: 74px;
     padding-left: calc((100% - 880px) / 2);
     padding-right: calc((100% - 880px) / 2);
-  }
-  .header__line {
-    width: 880px;
   }
 }
 
@@ -170,6 +168,15 @@ elements
   padding-bottom: 0;
 }
 
+@media screen and (min-width: 768px) {
+  .elements {
+    justify-content: center;
+    align-content: center;
+    grid-template-columns: 282px 282px;
+    gap: 20px 17px;
+  }
+}
+
 @media screen and (min-width: 1028px) {
   .elements {
     justify-content: center;
@@ -212,6 +219,10 @@ mesto-card
   font-size: 24px;
   line-height: 29px;
   margin: 0;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  width: 219px;
+  overflow: hidden;
 }
 
 .mesto-card__subtitle {
@@ -226,6 +237,11 @@ mesto-card
 .mesto-card__subtitle-icon {
   width: 22px;
   height: 19px;
+}
+
+.mesto-card__subtitle-icon:hover {
+  opacity: 0.5;
+  cursor: url("images/Layer.png"), pointer;
 }
 
 /*******************************************
@@ -253,4 +269,41 @@ footer
     font-size: 18px;
     line-height: 22px;
   }
+}
+
+/*******************************************
+popup
+********************************************/
+
+.popup {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  width: 100vw;
+  height: 100vmax;
+  left: 0px;
+  top: 0px;
+  background: rgb(0, 0, 0, 0.5);
+  z-index: 1;
+}
+
+.popup__container {
+  background-color: #FFFFFF;
+  box-shadow: 0px 0px 25px rgba(0, 0, 0, 0.15);
+  border-radius: 10px;
+  width: 430px;
+  height: 330px;
+  opacity: 1;
+  z-index: 2;
+}
+
+.popup__form {
+  color: black;
+  font-style: normal;
+  font-weight: 900;
+  font-size: 24px;
+  line-height: 29px;
+  padding-top: 34px;
+  padding-right: 36px;
 }
