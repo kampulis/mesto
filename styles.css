@@ -135,6 +135,10 @@ profile
     width: 150px;
     height: 50px;
   }
+  .profile__bottom-add:hover {
+    opacity: 0.6;
+    cursor: url("images/Layer.png"), pointer;
+  }
   .profile__info-title {
     font-size: 42px;
     line-height: 48px;
@@ -276,12 +280,12 @@ popup
 ********************************************/
 
 .popup {
-  display: flex;
+  display: none;
   justify-content: center;
   align-items: center;
   position: absolute;
   width: 100vw;
-  height: 100vmax;
+  height: 100vh;
   left: 0px;
   top: 0px;
   background: rgb(0, 0, 0, 0.5);
@@ -296,6 +300,7 @@ popup
   height: 330px;
   opacity: 1;
   z-index: 2;
+  position: relative;
 }
 
 .popup__form {
@@ -305,5 +310,90 @@ popup
   font-size: 24px;
   line-height: 29px;
   padding-top: 34px;
-  padding-right: 36px;
+  margin: 0;
+}
+
+.popup__name {
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  border-bottom: 1px solid rgb(0, 0, 0, 0.2);
+  width: 328px;
+  padding-bottom: 13px;
+}
+
+.popup__button {
+  width: 358px;
+  height: 50px;
+  background: #000000;
+  border-radius: 2px;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 18px;
+  line-height: 22px;
+  text-align: center;
+  color: #FFFFFF;
+  margin-bottom: 37px;
+}
+
+.popup__button:hover {
+  opacity: 0.8;
+  cursor: url("images/Layer.png"), pointer;
+}
+
+.popup__input {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
+  height: 100%;
+  margin-left: 36px;
+}
+
+.popup__close-icon {
+  position: absolute;
+  right: -32px;
+  top: -32px;
+}
+
+.popup__close-icon:hover {
+  transform: rotate(-45deg);
+  cursor: url("images/Layer.png"), pointer;
+}
+
+@media screen and (max-width: 321px) {
+  .popup__container {
+    width: 282px;
+    height: 322px;
+    box-shadow: 0px 0px 25px rgba(0, 0, 0, 0.15);
+    border-radius: 10px;
+  }
+  .popup__name {
+    width: 238px;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 17px;
+    color: #000000;
+  }
+  .popup__button {
+    width: 238px;
+  }
+  .popup__input {
+    align-items: center;
+    margin: 0;
+  }
+  .popup__form {
+    padding-left: 22px;
+    padding-right: 22px;
+    font-style: normal;
+    font-weight: 900;
+    font-size: 18px;
+    line-height: 22px;
+  }
+  .popup__close-icon {
+    width: 26px;
+    height: 26px;
+    right: 0;
+  }
 }
