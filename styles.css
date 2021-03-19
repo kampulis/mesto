@@ -109,6 +109,11 @@ profile
   margin-left: 10px;
 }
 
+.profile__bottom:hover {
+  opacity: 0.5;
+  cursor: url("images/Layer.png"), pointer;
+}
+
 .profile__bottom-add {
   padding-top: 36px;
   padding-bottom: 36px;
