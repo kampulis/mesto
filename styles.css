@@ -1,4 +1,4 @@
-@import url("fonts/fonts.css");
+@import url("vendor/fonts/fonts.css");
 body {
   font-family: inter, arial;
   background-color: black;
@@ -104,12 +104,12 @@ profile
   align-items: flex-start;
 }
 
-.profile__bottom {
+.profile__button {
   margin-top: 8px;
   margin-left: 10px;
 }
 
-.profile__bottom:hover {
+.profile__button:hover {
   opacity: 0.5;
   cursor: url("images/Layer.png"), pointer;
 }

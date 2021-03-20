@@ -1,7 +1,7 @@
 
 let container = document.querySelector('.profile');
-let profileBottom = container.querySelector('.profile__bottom');
-console.log(profileBottom);
+let profileButton = container.querySelector('.profile__button');
+console.log(profileButton);
 let popup = document.querySelector('.popup');
 console.log(popup);
 let body = document.querySelector('body');
@@ -12,7 +12,7 @@ function showClick() {
   body.style.overflow = 'hidden';
 }
 
-profileBottom.addEventListener('click', showClick);
+profileButton.addEventListener('click', showClick);
 
 function endClick() {
   popup.style.display = 'none';
