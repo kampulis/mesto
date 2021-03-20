@@ -6,8 +6,15 @@
 @import url("./__button-add/profile__button-add.css");
 @import url("./__button/profile__button.css");
 .profile {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
   flex-direction: column;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
   align-items: center;
   padding-left: 19px;
   padding-right: 19px;
@@ -17,11 +24,16 @@
 
 @media screen and (min-width: 1028px) {
   .profile {
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: row;
     flex-direction: row;
     padding-left: calc((100% - 880px) / 2);
     padding-right: calc((100% - 880px) / 2);
     padding-bottom: 51px;
     max-width: 880px;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
     justify-content: space-between;
   }
 }
