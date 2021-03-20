@@ -1,0 +1,14 @@
+.footer__auhtor {
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 17px;
+  color: #545454;
+}
+
+@media screen and (min-width: 1028px) {
+  .footer__auhtor {
+    font-size: 18px;
+    line-height: 22px;
+  }
+}

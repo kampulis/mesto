@@ -1,0 +1,8 @@
+.mesto-card__subtitle {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-right: 20px;
+  margin-left: 20px;
+  height: 80px;
+}

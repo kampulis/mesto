@@ -1,0 +1,18 @@
+.popup__close-icon {
+  position: absolute;
+  right: -32px;
+  top: -32px;
+}
+
+.popup__close-icon:hover {
+  transform: rotate(-45deg);
+  cursor: url("../images/Layer.png"), pointer;
+}
+
+@media screen and (max-width: 321px) {
+  .popup__close-icon {
+    width: 26px;
+    height: 26px;
+    right: 0;
+  }
+}

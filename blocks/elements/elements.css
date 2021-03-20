@@ -1,0 +1,35 @@
+.elements {
+  display: grid;
+  justify-content: center;
+  align-content: center;
+  gap: 20px;
+}
+
+.elements:last-of-type {
+  padding-bottom: 0;
+}
+
+@media screen and (min-width: 768px) {
+  .elements {
+    justify-content: center;
+    align-content: center;
+    grid-template-columns: 282px 282px;
+    gap: 20px 17px;
+  }
+}
+
+@media screen and (min-width: 1028px) {
+  .elements {
+    justify-content: center;
+    align-content: center;
+    grid-template-columns: 282px 282px 282px;
+    gap: 20px 17px;
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  .elements {
+    padding-left: calc((100% - 880px) / 2);
+    padding-right: calc((100% - 880px) / 2);
+  }
+}

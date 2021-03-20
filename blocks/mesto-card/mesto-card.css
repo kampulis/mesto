@@ -1,0 +1,12 @@
+@import url("./__photo/mesto-card__photo.css");
+@import url("./__subtitle/mesto-card__subtitle.css");
+@import url("./__subtitle-icon/mesto-card__subtitle-icon.css");
+@import url("./__subtitle-name/mesto-card__subtitle-name.css");
+.mesto-card {
+  display: grid;
+  border-radius: 10px;
+  width: 282px;
+  height: 361px;
+  background-color: #FFFFFF;
+  box-sizing: border-box;
+}

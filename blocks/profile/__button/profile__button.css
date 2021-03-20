@@ -1,0 +1,16 @@
+.profile__button {
+  margin-top: 8px;
+  margin-left: 10px;
+}
+
+.profile__button:hover {
+  opacity: 0.5;
+  cursor: url("../../../images/Layer.png"), pointer;
+}
+
+@media screen and (min-width: 1028px) {
+  .profile__button {
+    margin-left: 18px;
+    margin-top: 21px;
+  }
+}

@@ -1,0 +1,7 @@
+@import url("header/header.css");
+@import url('info/info.css');
+@import url('profile/profile.css');
+@import url("elements/elements.css");
+@import url("./mesto-card/mesto-card.css");
+@import url("./footer/footer.css");
+@import url("./popup/popup.css");

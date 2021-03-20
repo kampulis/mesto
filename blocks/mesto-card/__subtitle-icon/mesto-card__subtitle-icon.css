@@ -1,0 +1,9 @@
+.mesto-card__subtitle-icon {
+  width: 22px;
+  height: 19px;
+}
+
+.mesto-card__subtitle-icon:hover {
+  opacity: 0.5;
+  cursor: url("../../../images/Layer.png"), pointer;
+}
