@@ -5,5 +5,5 @@
 
 .mesto-card__subtitle-icon:hover {
   opacity: 0.5;
-  cursor: url("../../../images/Layer.png"), pointer;
+  cursor: pointer;
 }

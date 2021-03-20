@@ -1,8 +1,14 @@
 @import url("../vendor/normalize.css");
 @import url("../vendor/fonts/fonts.css");
-@import url("../blocks/blocks.css");
+@import url("../blocks/header/header.css");
+@import url('../blocks/info/info.css');
+@import url('../blocks/profile/profile.css');
+@import url("../blocks/elements/elements.css");
+@import url("../blocks/mesto-card/mesto-card.css");
+@import url("../blocks/footer/footer.css");
+@import url("../blocks/popup/popup.css");
 body {
-  font-family: inter, arial;
+  font-family: Inter, Arial;
   background-color: black;
   color: #FFFFFF;
 }

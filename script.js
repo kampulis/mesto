@@ -1,9 +1,7 @@
 
 let container = document.querySelector('.profile');
 let profileButton = container.querySelector('.profile__button');
-console.log(profileButton);
 let popup = document.querySelector('.popup');
-console.log(popup);
 let body = document.querySelector('body');
 let closeIcon = document.querySelector('.popup__close-icon');
 

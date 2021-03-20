@@ -1,0 +1,11 @@
+.profile__add {
+  width: 100%;
+}
+
+@media screen and (min-width: 1028px) {
+  .profile__add {
+    display: flex;
+    justify-content: flex-end;
+    max-width: 150px;
+  }
+}
