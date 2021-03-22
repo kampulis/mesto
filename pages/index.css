@@ -1,9 +1,7 @@
 @import url("../vendor/normalize.css");
 @import url("../vendor/fonts/fonts.css");
 @import url("../blocks/header/header.css");
-@import url("../blocks/header/__line/header__line.css");
 @import url("../blocks/header/__logo/header__logo.css");
-@import url('../blocks/info/info.css');
 @import url('../blocks/profile/profile.css');
 @import url("../blocks/profile/__info-title/profile__info-title.css");
 @import url("../blocks/profile/__info-subtitle/profile__info-subtitle.css");
@@ -12,8 +10,9 @@
 @import url("../blocks/profile/__info/profile__info.css");
 @import url("../blocks/profile/__button-add/profile__button-add.css");
 @import url("../blocks/profile/__button/profile__button.css");
-@import url("../blocks/profile/__add/profile__add.css");
 @import url("../blocks/profile/__add-plus/profile__add-plus.css");
+@import url("../blocks/profile/__info-text/profile__info-text.css");
+@import url("../blocks/profile/__img/profile__img.css");
 @import url("../blocks/elements/elements.css");
 @import url("../blocks/mesto-card/mesto-card.css");
 @import url("../blocks/mesto-card/__photo/mesto-card__photo.css");
@@ -29,8 +28,4 @@
 @import url("../blocks/popup/__input/popup__input.css");
 @import url("../blocks/popup/__container/popup__container.css");
 @import url("../blocks/popup/__close-icon/popup__close-icon.css");
-body {
-  font-family: Inter, Arial;
-  background-color: black;
-  color: #FFFFFF;
-}
+@import url("../blocks/body/body.css");

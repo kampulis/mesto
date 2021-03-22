@@ -1,5 +1,7 @@
 .popup {
   display: none;
+  padding: 0 20px;
+  box-sizing: border-box;
   -webkit-box-pack: center;
   -ms-flex-pack: center;
   justify-content: center;

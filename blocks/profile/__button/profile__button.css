@@ -1,16 +1,26 @@
 .profile__button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   margin-top: 8px;
   margin-left: 10px;
+  border: 1px solid #FFFFFF;
+  background-color: black;
+  width: 18px;
+  height: 18px;
+  padding: 0;
 }
 
 .profile__button:hover {
-  opacity: 0.5;
+  opacity: 0.6;
   cursor: pointer;
 }
 
 @media screen and (min-width: 1028px) {
   .profile__button {
     margin-left: 18px;
-    margin-top: 21px;
+    margin-top: 15px;
+    width: 24px;
+    height: 24px;
   }
 }

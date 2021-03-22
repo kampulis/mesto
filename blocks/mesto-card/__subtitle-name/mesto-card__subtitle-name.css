@@ -7,6 +7,6 @@
   margin: 0;
   text-overflow: ellipsis;
   white-space: nowrap;
-  width: 219px;
   overflow: hidden;
+  width: 219px;
 }

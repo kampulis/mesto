@@ -5,13 +5,18 @@
   align-items: flex-start;
   min-height: 56px;
   padding-top: 28px;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  border-bottom: 1px solid rgb(84, 84, 84, 0.7);
+  min-width: 320px;
 }
 
 @media screen and (min-width: 1028px) {
   .header {
     padding-top: 45px;
     max-height: 74px;
-    padding-left: calc((100% - 880px) / 2);
-    padding-right: calc((100% - 880px) / 2);
+    margin-left: calc((100% - 880px) / 2);
+    margin-right: calc((100% - 880px) / 2);
   }
 }

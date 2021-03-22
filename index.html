@@ -9,70 +9,69 @@
   <title>Mesto</title>
 </head>
 
-<body>
+<body class="body">
   <header class="header">
     <img class="header__logo" src="images/logo.svg" alt="логотип">
-    <div class="header__line"></div>
   </header>
   <main>
     <section class="profile">
       <div class="profile__card">
         <img class="profile__foto" src="images/gusto.jpg" alt="фото Жака-ив Кусто">
         <div class="profile__info">
-          <div class="info">
+          <div class="profile__info-text">
             <h1 class="profile__info-title">Жак-Ив Кусто</h1>
-            <img class="profile__button" src="images/edit.button.svg" alt="кнопка изменить">
+            <button class="profile__button" type="submit">
+              <img class="profile__img" src='images/pan2.svg' alt="карандаш">
+            </button>
           </div>
           <p class="profile__info-subtitle">Исследователь океана</p>
         </div>
       </div>
-      <div class="profile__add">
-        <button class="profile__button-add">
-          <img class="profile__add-plus" src="images/Vector3.png" alt="плюс">
-        </button>
-      </div>
+      <button class="profile__button-add" type="submit">
+        <img class="profile__add-plus" src="images/plus.svg" alt="плюс">
+      </button>
     </section>
     <section class="elements">
       <div class="mesto-card">
         <img class="mesto-card__photo" src="images/cherkes.jpg" alt="фото монастыря в горах">
         <div class="mesto-card__subtitle">
-          <p class="mesto-card__subtitle-name">Карачаево-Черкесская республика</p>
-          <img class="mesto-card__subtitle-icon" src="images/icon-like.png" alt="лайк">
+          <h4 class="mesto-card__subtitle-name">Карачаево-Черкесская республика</h4>
+          <button class="mesto-card__subtitle-icon" type="submit"></button>
         </div>
       </div>
       <div class="mesto-card">
         <img class="mesto-card__photo" src="images/elbrus.png" alt="фото горы Эльбрус">
         <div class="mesto-card__subtitle">
-          <p class="mesto-card__subtitle-name">Гора Эльбрус</p>
-          <img class="mesto-card__subtitle-icon" src="images/icon-like.png" alt="лайк">
+          <h4 class="mesto-card__subtitle-name">Гора Эльбрус</h4>
+          <button class="mesto-card__subtitle-icon" type="submit"></button>
         </div>
       </div>
       <div class="mesto-card">
         <img class="mesto-card__photo" src="images/dombay.png" alt="фото домбай">
         <div class="mesto-card__subtitle">
-          <p class="mesto-card__subtitle-name">Домбай</p>
-          <img class="mesto-card__subtitle-icon" src="images/icon-like.png" alt="лайк">
+          <h4 class="mesto-card__subtitle-name">Домбай</h4>
+          <button class="mesto-card__subtitle-icon" type="submit"></button>
         </div>
       </div>
       <div class="mesto-card">
         <img class="mesto-card__photo" src="images/blackSea.jpg" alt="фото моря">
         <div class="mesto-card__subtitle">
-          <p class="mesto-card__subtitle-name">Черное море</p>
-          <img class="mesto-card__subtitle-icon" src="images/icon-like.png" alt="лайк">
+          <h4 class="mesto-card__subtitle-name">Черное море</h4>
+          <button class="mesto-card__subtitle-icon" type="submit"></button>
         </div>
       </div>
       <div class="mesto-card">
         <img class="mesto-card__photo" src="images/tarhankut.jpg" alt="Тарханкут мыс">
         <div class="mesto-card__subtitle">
-          <p class="mesto-card__subtitle-name">Тарханкут</p>
-          <img class="mesto-card__subtitle-icon" src="images/icon-like.png" alt="лайк">
+          <h4 class="mesto-card__subtitle-name">Тарханкут</h4>
+          <button class="mesto-card__subtitle-icon" type="submit"></button>
         </div>
       </div>
       <div class="mesto-card">
         <img class="mesto-card__photo" src="images/abhaziya.jpg" alt="Заброшенный дом в Абхазии">
         <div class="mesto-card__subtitle">
-          <p class="mesto-card__subtitle-name">Абхазия</p>
-          <img class="mesto-card__subtitle-icon" src="images/icon-like.png" alt="лайк">
+          <h4 class="mesto-card__subtitle-name">Абхазия</h4>
+          <button class="mesto-card__subtitle-icon" type="submit"></button>
         </div>
       </div>
     </section>
@@ -82,16 +81,16 @@
   </footer>
   <section class="popup">
     <div class="popup__container">
-      <form class="popup__input">
-        <h4 class="popup__form">Редактировать профиль</h4>
+      <form class="popup__input" name="popup-form">
+        <h2 class="popup__form">Редактировать профиль</h2>
         <input class="popup__name" type="text" value="Жак-Ив Кусто" id="name">
         <input class="popup__name" type="text" value="Исследователь океана" id="job">
         <button type="submit" class="popup__button">Сохранить</button>
       </form>
-      <img class="popup__close-icon" src="images/Close-Icon.png" alt="крестик">
+      <button class="popup__close-icon" type="submit"></button>
     </div>
   </section>
-  <script src="script.js"></script>
+  <script src="scripts/index.js"></script>
 </body>
 
 </html>

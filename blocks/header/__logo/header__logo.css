@@ -8,5 +8,7 @@
   .header__logo {
     width: 142px;
     height: 33px;
+    margin-left: 0;
+    margin-bottom: 41px;
   }
 }

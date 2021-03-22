@@ -5,16 +5,15 @@
   font-size: 24px;
   line-height: 29px;
   padding-top: 34px;
-  margin: 0;
+  margin-bottom: 54px;
+  margin-top: 0;
 }
 
-@media screen and (max-width: 321px) {
+@media screen and (max-width: 580px) {
   .popup__form {
-    padding-left: 22px;
-    padding-right: 22px;
-    font-style: normal;
-    font-weight: 900;
     font-size: 18px;
     line-height: 22px;
+    margin-bottom: 75px;
+    padding-top: 25px;
   }
 }

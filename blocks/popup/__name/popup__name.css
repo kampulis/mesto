@@ -3,15 +3,21 @@
   border-left: none;
   border-right: none;
   border-bottom: 1px solid rgb(0, 0, 0, 0.2);
-  width: 328px;
-  padding-bottom: 13px;
+  width: 100%;
+  padding: 0 0 13px;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 18px;
+  line-height: 22px;
+  margin-top: 30px;
 }
 
-@media screen and (max-width: 321px) {
+.popup__name:first-of-type {
+  margin-top: 0;
+}
+
+@media screen and (max-width: 580px) {
   .popup__name {
-    width: 238px;
-    font-style: normal;
-    font-weight: normal;
     font-size: 14px;
     line-height: 17px;
     color: #000000;

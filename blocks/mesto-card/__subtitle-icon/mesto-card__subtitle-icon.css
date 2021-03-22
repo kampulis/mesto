@@ -1,6 +1,10 @@
 .mesto-card__subtitle-icon {
   width: 22px;
   height: 19px;
+  background-image: url("../../../images/mesto-card-icon.svg");
+  border: none;
+  background-color: white;
+  padding: 0;
 }
 
 .mesto-card__subtitle-icon:hover {
