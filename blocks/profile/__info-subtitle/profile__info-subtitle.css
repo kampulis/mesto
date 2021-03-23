@@ -9,15 +9,15 @@
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
-  padding-left: 19px;
-  padding-right: 19px;
+  width: 282px;
+  text-align: center;
 }
 
 @media screen and (min-width: 1028px) {
   .profile__info-subtitle {
     font-size: 18px;
     line-height: 22px;
-    padding-right: 350px;
-    padding-left: 594px;
+    width: 336px;
+    text-align: unset;
   }
 }
