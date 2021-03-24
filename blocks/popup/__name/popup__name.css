@@ -15,11 +15,3 @@
 .popup__name:first-of-type {
   margin-top: 0;
 }
-
-@media screen and (max-width: 580px) {
-  .popup__name {
-    font-size: 18px;
-    line-height: 22px;
-    color: #000000;
-  }
-}
