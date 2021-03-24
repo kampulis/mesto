@@ -21,6 +21,8 @@ profileButton.addEventListener('click', showClick);
 
 function endClick() {
   popup.classList.remove('popup_opened');
+  body.style.overflow = 'visible';
+
 }
 
 closeIcon.addEventListener('click', endClick);
