@@ -2,7 +2,7 @@
 let container = document.querySelector('.profile');
 let profileButton = container.querySelector('.profile__button');
 let popup = document.querySelector('.popup');
-let body = document.querySelector('body');
+let body = document.querySelector('.body');
 let closeIcon = document.querySelector('.popup__close-icon');
 let formElement = document.querySelector('.popup__input');
 let nameInput = document.querySelector('#name');
@@ -12,7 +12,6 @@ let profileSubtitle = document.querySelector('.profile__info-subtitle');
 
 function showClick() {
   popup.classList.add('popup_opened');
-  popup.classList.remove('popup_closed');
   body.style.overflow = 'hidden';
   nameInput.value = profileTitle.textContent;
   jobInput.value = profileSubtitle.textContent;
@@ -22,12 +21,10 @@ profileButton.addEventListener('click', showClick);
 
 function endClick() {
   popup.classList.remove('popup_opened');
-  popup.classList.add('popup_closed');
 }
 
 closeIcon.addEventListener('click', endClick);
 
-formElement.addEventListener('submit', formSubmitHandler);
 
 function formSubmitHandler(evt) {
   evt.preventDefault();

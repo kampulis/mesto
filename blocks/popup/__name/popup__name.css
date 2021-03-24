@@ -7,9 +7,9 @@
   padding: 0 0 13px;
   font-style: normal;
   font-weight: normal;
-  font-size: 18px;
-  line-height: 22px;
-  margin-top: 30px;
+  margin-top: 16px;
+  font-size: 14px;
+  line-height: 17px;
 }
 
 .popup__name:first-of-type {
@@ -18,8 +18,8 @@
 
 @media screen and (max-width: 580px) {
   .popup__name {
-    font-size: 14px;
-    line-height: 17px;
+    font-size: 18px;
+    line-height: 22px;
     color: #000000;
   }
 }
