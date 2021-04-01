@@ -32,48 +32,15 @@
       </button>
     </section>
     <section class="elements">
-      <div class="mesto-card">
-        <img class="mesto-card__photo" src="images/cherkes.jpg" alt="фото монастыря в горах">
-        <div class="mesto-card__subtitle">
-          <h2 class="mesto-card__subtitle-name">Карачаево-Черкесская республика</h2>
-          <button class="mesto-card__subtitle-icon" type="button"></button>
+      <template id="mesto-card">
+        <div class="mesto-card">
+          <img class="mesto-card__photo" src="" alt="">
+          <div class="mesto-card__subtitle">
+            <h2 class="mesto-card__subtitle-name"></h2>
+            <button class="mesto-card__subtitle-icon" type="button"></button>
+          </div>
         </div>
-      </div>
-      <div class="mesto-card">
-        <img class="mesto-card__photo" src="images/elbrus.png" alt="фото горы Эльбрус">
-        <div class="mesto-card__subtitle">
-          <h2 class="mesto-card__subtitle-name">Гора Эльбрус</h2>
-          <button class="mesto-card__subtitle-icon" type="button"></button>
-        </div>
-      </div>
-      <div class="mesto-card">
-        <img class="mesto-card__photo" src="images/dombay.png" alt="фото домбай">
-        <div class="mesto-card__subtitle">
-          <h2 class="mesto-card__subtitle-name">Домбай</h2>
-          <button class="mesto-card__subtitle-icon" type="button"></button>
-        </div>
-      </div>
-      <div class="mesto-card">
-        <img class="mesto-card__photo" src="images/blackSea.jpg" alt="фото моря">
-        <div class="mesto-card__subtitle">
-          <h2 class="mesto-card__subtitle-name">Черное море</h2>
-          <button class="mesto-card__subtitle-icon" type="button"></button>
-        </div>
-      </div>
-      <div class="mesto-card">
-        <img class="mesto-card__photo" src="images/tarhankut.jpg" alt="Тарханкут мыс">
-        <div class="mesto-card__subtitle">
-          <h2 class="mesto-card__subtitle-name">Тарханкут</h2>
-          <button class="mesto-card__subtitle-icon" type="button"></button>
-        </div>
-      </div>
-      <div class="mesto-card">
-        <img class="mesto-card__photo" src="images/abhaziya.jpg" alt="Заброшенный дом в Абхазии">
-        <div class="mesto-card__subtitle">
-          <h2 class="mesto-card__subtitle-name">Абхазия</h2>
-          <button class="mesto-card__subtitle-icon" type="button"></button>
-        </div>
-      </div>
+      </template>
     </section>
   </main>
   <footer class="footer">
@@ -88,6 +55,17 @@
         <button type="submit" class="popup__button">Сохранить</button>
       </form>
       <button class="popup__close-icon" type="button"></button>
+    </div>
+  </section>
+  <section class="popup-add">
+    <div class="popup__container">
+      <form class="popup__input" name="popup-form">
+        <h2 class="popup__title">Новое место</h2>
+        <input class="popup-add__name" type="text" value="Название" id="name">
+        <input class="popup-add__name" type="text" value="Ссылка на картинку" id="link">
+        <button type="submit" class="popup__button">Создать</button>
+      </form>
+      <button class="popup-add__close-icon" type="button"></button>
     </div>
   </section>
   <script src="scripts/index.js"></script>
