@@ -71,6 +71,7 @@ function createMestoCard(name, link) {
   const template = document.querySelector('#mesto-card').content.cloneNode(true);
   template.querySelector('.mesto-card__photo').src = link;
   template.querySelector('.mesto-card__subtitle-name').textContent = name;
+  template.querySelector('.mesto-card__subtitle-icon').addEventListener('click', likeAdd);
   return template;
 };
 
@@ -101,4 +102,33 @@ closeIconAdd.addEventListener('click', endClickAdd);
 
 
 
+let buttonMesto = document.querySelector
+let mestoInput = document.querySelector('#mesto');
+let linkInput = document.querySelector('#link');
 
+function formSubmitAddMesto(e) {
+  e.preventDefault();
+
+  element.prepend(
+    createMestoCard(mestoInput.value, linkInput.value)
+  );
+
+  endClickAdd();
+}
+
+popupAdd.addEventListener('submit', formSubmitAddMesto);
+
+
+function likeAdd(e) {
+  e.target.classList.add('mesto-card__subtitle-icon_active');
+  console.log(e.target);
+}
+
+
+//let likeR = document.querySelectorAll('.mesto-card__subtitle-icon_active');
+
+//function likeRemove() {
+ // like.classList.remove('mesto-card__subtitle-icon_active');
+//}
+
+//likeR.addEventListener('click', likeRemove);
