@@ -120,15 +120,10 @@ popupAdd.addEventListener('submit', formSubmitAddMesto);
 
 
 function likeAdd(e) {
-  e.target.classList.add('mesto-card__subtitle-icon_active');
-  console.log(e.target);
+  if (e.target.classList.contains('mesto-card__subtitle-icon_active')) {
+    e.target.classList.remove('mesto-card__subtitle-icon_active');
+  } else {
+    e.target.classList.add('mesto-card__subtitle-icon_active');
+  };
+
 }
-
-
-//let likeR = document.querySelectorAll('.mesto-card__subtitle-icon_active');
-
-//function likeRemove() {
- // like.classList.remove('mesto-card__subtitle-icon_active');
-//}
-
-//likeR.addEventListener('click', likeRemove);
