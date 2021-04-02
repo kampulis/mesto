@@ -41,3 +41,4 @@
 @import url("../blocks/photo/__icon-close/photo__icon-close.css");
 @import url("../blocks/photo/__text/photo__text.css");
 @import url("../blocks/photo/__container/photo__container.css");
+@import url('../blocks/photo/_opened/photo_opened.css');

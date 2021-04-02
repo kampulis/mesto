@@ -1,5 +1,5 @@
 .photo {
-  display: flex;
+  display: none;
   flex-direction: column;
   padding: 90px 40px;
   box-sizing: border-box;
