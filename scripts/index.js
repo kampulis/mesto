@@ -72,6 +72,7 @@ function createMestoCard(name, link) {
   template.querySelector('.mesto-card__photo').src = link;
   template.querySelector('.mesto-card__subtitle-name').textContent = name;
   template.querySelector('.mesto-card__subtitle-icon').addEventListener('click', likeAdd);
+  template.querySelector('.mesto-card__trash').addEventListener('click', deleteCard);
   return template;
 };
 
@@ -125,5 +126,10 @@ function likeAdd(e) {
   } else {
     e.target.classList.add('mesto-card__subtitle-icon_active');
   };
+}
 
+
+function deleteCard(r) {
+  const card = r.target.closest('.mesto-card');
+  card.remove();
 }
