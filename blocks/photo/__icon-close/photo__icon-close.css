@@ -1,0 +1,27 @@
+.photo__icon-close {
+  position: absolute;
+  right: -48px;
+  top: -48px;
+  width: 56px;
+  height: 56px;
+  background-image: url("../../../images/closeIcon.svg");
+  background-color: unset;
+  background-size: cover;
+  background-position: center;
+  padding: 0;
+  border: none;
+}
+
+.photo__icon-close:hover {
+  opacity: 0.6;
+  cursor: pointer;
+}
+
+@media screen and (max-width: 780px) {
+  .photo__icon-close {
+    width: 36px;
+    height: 36px;
+    right: 0;
+    top: -50px;
+  }
+}

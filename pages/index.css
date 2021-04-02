@@ -36,3 +36,8 @@
 @import url("../blocks/popup-add/__name/popup-add__name.css");
 @import url("../blocks/mesto-card/__subtitle-icon/_active/mesto-card__subtitle-icon_active.css");
 @import url("../blocks/mesto-card/__trash/mesto-card__trash.css");
+@import url("../blocks/photo/photo.css");
+@import url("../blocks/photo/__card/photo__card.css");
+@import url("../blocks/photo/__icon-close/photo__icon-close.css");
+@import url("../blocks/photo/__text/photo__text.css");
+@import url("../blocks/photo/__container/photo__container.css");
