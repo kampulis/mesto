@@ -34,6 +34,10 @@
 @import url("../blocks/popup-add/_opened/popup-add_opened.css");
 @import url("../blocks/popup-add/__close-icon/popup-add__close-icon.css");
 @import url("../blocks/popup-add/__name/popup-add__name.css");
+@import url("../blocks/popup-add/__container/popup-add__container.css");
+@import url("../blocks/popup-add/__input/popup-add__input.css");
+@import url('../blocks/popup-add/__title/popup-add__title.css');
+@import url("../blocks/popup-add/__button/popup-add__button.css");
 @import url("../blocks/mesto-card/__subtitle-icon/_active/mesto-card__subtitle-icon_active.css");
 @import url("../blocks/mesto-card/__trash/mesto-card__trash.css");
 @import url("../blocks/photo/photo.css");
