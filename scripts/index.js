@@ -1,5 +1,5 @@
-let container = document.querySelector('.profile');
-let profileButton = container.querySelector('.profile__button');
+let profile = document.querySelector('.profile');
+let profileButton = profile.querySelector('.profile__button');
 let popup = document.querySelector('.popup');
 let body = document.querySelector('.body');
 let closeIcon = document.querySelector('.popup__close-icon');
@@ -9,7 +9,6 @@ let jobInput = document.querySelector('#job');
 let profileTitle = document.querySelector('.profile__info-title');
 let profileSubtitle = document.querySelector('.profile__info-subtitle');
 let photo = document.querySelector('.photo');
-
 
 function showClick() {
   popup.classList.add('popup_opened');
@@ -27,9 +26,6 @@ function endClick() {
 }
 
 closeIcon.addEventListener('click', endClick);
-
-
-
 
 function formSubmitHandler(evt) {
   evt.preventDefault();
@@ -69,63 +65,64 @@ const initialCards = [
   }
 ];
 
+
+/** Создаем карточки из массива */
+
 const element = document.querySelector('.elements');
 
 function createMestoCard(name, link) {
   const template = document.querySelector('#mesto-card').content.cloneNode(true);
   template.querySelector('.mesto-card__photo').src = link;
   template.querySelector('.mesto-card__subtitle-name').textContent = name;
-  template.querySelector('.mesto-card__subtitle-icon').addEventListener('click', likeAdd);
+  template.querySelector('.mesto-card__subtitle-icon').addEventListener('click', addLike);
   template.querySelector('.mesto-card__trash').addEventListener('click', deleteCard);
-  template.querySelector('.mesto-card__photo').addEventListener('click', photoShow);
+  template.querySelector('.mesto-card__photo').addEventListener('click', showPhoto);
   return template;
 };
-
 
 initialCards.forEach(function (card) {
   element.prepend(createMestoCard(card.name, card.link));
 });
 
-let profileAdd = document.querySelector(".profile__button-add");
-let popupAdd = document.querySelector(".popup-add");
-let closeIconAdd = document.querySelector('.popup-add__close-icon');
 
-function showClickAdd() {
+/** Попап добавления новой карточки */
+
+let profileButtonAdd = document.querySelector(".profile__button-add");
+let popupAdd = document.querySelector(".popup-add");
+let popupAddCloseButton = document.querySelector('.popup-add__close-icon');
+
+function showPopupAdd() {
   popupAdd.classList.add('popup-add_opened');
   body.style.overflow = 'hidden';
-
 }
 
-profileAdd.addEventListener('click', showClickAdd);
+profileButtonAdd.addEventListener('click', showPopupAdd);
 
-function endClickAdd() {
+function closePopupAdd() {
   popupAdd.classList.remove('popup-add_opened');
   body.style.overflow = 'visible';
-
 }
 
-closeIconAdd.addEventListener('click', endClickAdd);
-
-
-
-let buttonMesto = document.querySelector
-let mestoInput = document.querySelector('#mesto');
-let linkInput = document.querySelector('#link');
+popupAddCloseButton.addEventListener('click', closePopupAdd);
 
 function formSubmitAddMesto(e) {
+  let mestoInput = document.querySelector('#mesto');
+  let linkInput = document.querySelector('#link');
   e.preventDefault();
 
   element.prepend(
     createMestoCard(mestoInput.value, linkInput.value)
   );
 
-  endClickAdd();
+  closePopupAdd();
 }
 
 popupAdd.addEventListener('submit', formSubmitAddMesto);
 
 
-function likeAdd(e) {
+/** Кнопки на карточке */
+
+function addLike(e) {
   if (e.target.classList.contains('mesto-card__subtitle-icon_active')) {
     e.target.classList.remove('mesto-card__subtitle-icon_active');
   } else {
@@ -133,14 +130,17 @@ function likeAdd(e) {
   };
 }
 
-
-function deleteCard(r) {
-  const card = r.target.closest('.mesto-card');
+function deleteCard(e) {
+  const card = e.target.closest('.mesto-card');
   card.remove();
 }
 
 
-function photoShow(e) {
+/** Работа с фото */
+
+let fullPhoto = document.querySelector('.photo');
+
+function showPhoto(e) {
   fullPhoto.classList.add('photo_opened');
   body.style.overflow = 'hidden';
   document.querySelector('.photo__card').src = e.target.src;
@@ -148,12 +148,11 @@ function photoShow(e) {
   let subtitle = rod.querySelector('.mesto-card__subtitle-name');
   document.querySelector('.photo__text').textContent = subtitle.innerText;
 }
-let photoIcon = document.querySelector(".photo__icon-close");
-let fullPhoto = document.querySelector('.photo');
 
-function endShow() {
+function closePhoto() {
   fullPhoto.classList.remove('photo_opened');
   body.style.overflow = 'visible';
 }
 
-photoIcon.addEventListener('click', endShow)
+let photoCloseButton = document.querySelector(".photo__icon-close");
+photoCloseButton.addEventListener('click', closePhoto);
