@@ -90,10 +90,14 @@ initialCards.forEach(function (card) {
 let profileButtonAdd = document.querySelector(".profile__button-add");
 let popupAdd = document.querySelector(".popup-add");
 let popupAddCloseButton = document.querySelector('.popup-add__close-icon');
+let mestoInput = document.querySelector('#mesto');
+let linkInput = document.querySelector('#link');
 
 function showPopupAdd() {
   popupAdd.classList.add('popup-add_opened');
   body.style.overflow = 'hidden';
+  mestoInput.value = '';
+  linkInput.value = '';
 }
 
 profileButtonAdd.addEventListener('click', showPopupAdd);
@@ -106,8 +110,6 @@ function closePopupAdd() {
 popupAddCloseButton.addEventListener('click', closePopupAdd);
 
 function formSubmitAddMesto(e) {
-  let mestoInput = document.querySelector('#mesto');
-  let linkInput = document.querySelector('#link');
   e.preventDefault();
 
   element.prepend(
