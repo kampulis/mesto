@@ -18,22 +18,25 @@ const linkInput = document.querySelector('#link');
 const photoCloseButton = document.querySelector(".popup_type_image .popup__close-icon");
 const fullPhoto = document.querySelector('.popup_type_image');
 
-function showClick() {
+
+function openPopup(popup) {
   popup.classList.add('popup_opened');
-  body.style.overflow = 'hidden';
+}
+
+function closePopup(popup) {
+  popup.classList.remove('popup_opened');
+}
+
+function showClick() {
+  openPopup(popup);
   nameInput.value = profileTitle.textContent;
   jobInput.value = profileSubtitle.textContent;
 }
 
-profileButton.addEventListener('click', showClick);
-
 function endClick() {
-  popup.classList.remove('popup_opened');
-  body.style.overflow = 'visible';
-
+  closePopup(popup);
 }
 
-closeIcon.addEventListener('click', endClick);
 
 function formSubmitHandler(evt) {
   evt.preventDefault();
@@ -44,25 +47,16 @@ function formSubmitHandler(evt) {
   endClick();
 }
 
-formElement.addEventListener('submit', formSubmitHandler);
-
-
 /** Попап добавления новой карточки */
 
 function showPopupAdd() {
-  popupAdd.classList.add('popup_opened');
-  body.style.overflow = 'hidden';
+  openPopup(popupAdd);
 }
-
-profileButtonAdd.addEventListener('click', showPopupAdd);
 
 function closePopupAdd() {
-  popupAdd.classList.remove('popup_opened');
-  body.style.overflow = 'visible';
+  closePopup(popupAdd);
   formElementAddCard.reset();
 }
-
-popupAddCloseButton.addEventListener('click', closePopupAdd);
 
 function formSubmitAddMesto(e) {
   e.preventDefault();
@@ -73,9 +67,6 @@ function formSubmitAddMesto(e) {
 
   closePopupAdd();
 }
-
-popupAdd.addEventListener('submit', formSubmitAddMesto);
-
 
 /** Кнопки на карточке */
 
@@ -88,24 +79,25 @@ function deleteCard(e) {
   card.remove();
 }
 
-
 /** Работа с фото */
 
-
-
 function showPhoto(e) {
-  fullPhoto.classList.add('popup_opened');
-  body.style.overflow = 'hidden';
+  openPopup(fullPhoto);
   document.querySelector('.popup__card').src = e.target.src;
+  document.querySelector('.popup__card').alt = e.target.alt;
   let rod = e.target.closest('.mesto-card');
   let subtitle = rod.querySelector('.mesto-card__subtitle-name');
-  document.querySelector('.popup__text').textContent = subtitle.innerText;
+  document.querySelector('.popup__text').textContent = subtitle.textContent;
 }
 
 function closePhoto() {
-  fullPhoto.classList.remove('popup_opened');
-  body.style.overflow = 'visible';
+  closePopup(fullPhoto);
 }
 
-
 photoCloseButton.addEventListener('click', closePhoto);
+profileButton.addEventListener('click', showClick);
+closeIcon.addEventListener('click', endClick);
+formElement.addEventListener('submit', formSubmitHandler);
+profileButtonAdd.addEventListener('click', showPopupAdd);
+popupAddCloseButton.addEventListener('click', closePopupAdd);
+popupAdd.addEventListener('submit', formSubmitAddMesto);
