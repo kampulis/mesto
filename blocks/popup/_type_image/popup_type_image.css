@@ -1,0 +1,5 @@
+.popup_type_image {
+  flex-shrink: 1;
+  flex-direction: column;
+  padding: 90px 40px;
+}

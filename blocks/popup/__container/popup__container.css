@@ -12,10 +12,3 @@
   z-index: 2;
   position: relative;
 }
-
-@media screen and (max-width: 580px) {
-  .popup__container {
-    padding-left: 22px;
-    padding-right: 22px;
-  }
-}
