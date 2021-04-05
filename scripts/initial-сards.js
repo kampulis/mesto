@@ -25,20 +25,3 @@ const initialCards = [
   }
 ];
 
-const element = document.querySelector('.elements');
-const template = document.querySelector('#mesto-card');
-
-function createMestoCard(name, link) {
-  const newCard = template.content.cloneNode(true);
-  newCard.querySelector('.mesto-card__photo').src = link;
-  newCard.querySelector('.mesto-card__photo').alt = name;
-  newCard.querySelector('.mesto-card__subtitle-name').textContent = name;
-  newCard.querySelector('.mesto-card__subtitle-icon').addEventListener('click', addLike);
-  newCard.querySelector('.mesto-card__trash').addEventListener('click', deleteCard);
-  newCard.querySelector('.mesto-card__photo').addEventListener('click', showPhoto);
-  return newCard;
-};
-
-initialCards.forEach(function (card) {
-  element.prepend(createMestoCard(card.name, card.link));
-});

@@ -17,6 +17,8 @@ const mestoInput = document.querySelector('#mesto');
 const linkInput = document.querySelector('#link');
 const photoCloseButton = document.querySelector(".popup_type_image .popup__close-icon");
 const fullPhoto = document.querySelector('.popup_type_image');
+const element = document.querySelector('.elements');
+const template = document.querySelector('#mesto-card');
 
 
 function openPopup(popup) {
@@ -33,10 +35,6 @@ function showClick() {
   jobInput.value = profileSubtitle.textContent;
 }
 
-function endClick() {
-  closePopup(popup);
-}
-
 
 function formSubmitHandler(evt) {
   evt.preventDefault();
@@ -44,19 +42,25 @@ function formSubmitHandler(evt) {
   profileTitle.textContent = nameInput.value;
   profileSubtitle.textContent = jobInput.value;
 
-  endClick();
+  closePopup(popup);
 }
+
+function createMestoCard(name, link) {
+  const newCard = template.content.cloneNode(true);
+  newCard.querySelector('.mesto-card__photo').src = link;
+  newCard.querySelector('.mesto-card__photo').alt = name;
+  newCard.querySelector('.mesto-card__subtitle-name').textContent = name;
+  newCard.querySelector('.mesto-card__subtitle-icon').addEventListener('click', addLike);
+  newCard.querySelector('.mesto-card__trash').addEventListener('click', deleteCard);
+  newCard.querySelector('.mesto-card__photo').addEventListener('click', showPhoto);
+  return newCard;
+};
+
+initialCards.forEach(function (card) {
+  element.prepend(createMestoCard(card.name, card.link));
+});
 
 /** Попап добавления новой карточки */
-
-function showPopupAdd() {
-  openPopup(popupAdd);
-}
-
-function closePopupAdd() {
-  closePopup(popupAdd);
-  formElementAddCard.reset();
-}
 
 function formSubmitAddMesto(e) {
   e.preventDefault();
@@ -65,7 +69,8 @@ function formSubmitAddMesto(e) {
     createMestoCard(mestoInput.value, linkInput.value)
   );
 
-  closePopupAdd();
+  closePopup(popupAdd);
+  formElementAddCard.reset();
 }
 
 /** Кнопки на карточке */
@@ -85,19 +90,19 @@ function showPhoto(e) {
   openPopup(fullPhoto);
   document.querySelector('.popup__card').src = e.target.src;
   document.querySelector('.popup__card').alt = e.target.alt;
-  let rod = e.target.closest('.mesto-card');
-  let subtitle = rod.querySelector('.mesto-card__subtitle-name');
+  const rod = e.target.closest('.mesto-card');
+  const subtitle = rod.querySelector('.mesto-card__subtitle-name');
   document.querySelector('.popup__text').textContent = subtitle.textContent;
 }
 
-function closePhoto() {
-  closePopup(fullPhoto);
-}
-
-photoCloseButton.addEventListener('click', closePhoto);
+photoCloseButton.addEventListener('click', () => closePopup(fullPhoto));
 profileButton.addEventListener('click', showClick);
-closeIcon.addEventListener('click', endClick);
+closeIcon.addEventListener('click', () => closePopup(popup));
 formElement.addEventListener('submit', formSubmitHandler);
-profileButtonAdd.addEventListener('click', showPopupAdd);
-popupAddCloseButton.addEventListener('click', closePopupAdd);
+profileButtonAdd.addEventListener('click', () => openPopup(popupAdd));
+popupAddCloseButton.addEventListener('click', () => closePopup(popupAdd));
 popupAdd.addEventListener('submit', formSubmitAddMesto);
+
+
+
+
