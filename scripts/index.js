@@ -128,7 +128,7 @@ function addValidationsToForms() {
   const forms = Array.from(document.forms);
   forms.forEach(form => {
     const formButton = form.querySelector('.popup__button');
-    if (form.name === "new-card") {
+    if (form.name === "popup-form-card") {
       formButton.disabled = true;
     }
     addValidationsToInputs(form, formButton);
