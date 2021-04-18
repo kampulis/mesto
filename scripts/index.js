@@ -17,29 +17,60 @@ const photoCloseButton = document.querySelector(".popup_type_image .popup__close
 const fullPhoto = document.querySelector('.popup_type_image');
 const element = document.querySelector('.elements');
 const template = document.querySelector('#mesto-card');
+const popupProfileOverlay = document.querySelector('.popup.popup_type_edit');
+const popupAddMestoOverlay = document.querySelector('.popup.popup_type_new-card');
 
-function openPopup(popup) {
+const allClasses = {
+  formSelector: '.popup__input',
+  inputErrorSelector: '.popup__name_type_err',
+  submitButtonSelector: '.popup__button',
+  inputContainerSelector: '.popup__name-container',
+  inputSelector: '.popup__name',
+  inputErrorSelector: '.popup__name.popup__name_type_err',
+  disabledButtonSelector: '.popup__container_new-card .popup__button',
+};
+
+function handleOpenPopup(popup) {
   popup.classList.add('popup_opened');
 }
 
-function closePopup(popup) {
+function handleClosePopup(popup) {
   popup.classList.remove('popup_opened');
-  resetFormsErrors();
+  resetFormsErrors(allClasses);
 }
 
-function showClick() {
-  openPopup(popup);
+function handleClosePopupOpened() {
+  const popup = document.querySelector('.popup_opened');
+  handleClosePopup(popup);
+}
+
+function handleClickOverlay(e) {
+  const element = e.target;
+  if (element.classList.contains('popup')) {
+    handleClosePopupOpened();
+  }
+
+}
+
+function handleClosePopupEsc(e) {
+  if (e.keyCode === 27) {
+    handleClosePopupOpened();
+  }
+}
+
+function handleShowProfile() {
+  handleOpenPopup(popup);
   nameInput.value = profileTitle.textContent;
   jobInput.value = profileSubtitle.textContent;
 }
 
-function formSubmitHandler(evt) {
+function handleProfileSubmit(evt) {
   evt.preventDefault();
 
   profileTitle.textContent = nameInput.value;
   profileSubtitle.textContent = jobInput.value;
 
-  closePopup(popup);
+  handleClosePopup(popup);
 }
 
 function createMestoCard(name, link) {
@@ -59,14 +90,14 @@ initialCards.forEach(function (card) {
 
 /** Попап добавления новой карточки */
 
-function formSubmitAddMesto(e) {
+function handleAddMestoSubmit(e) {
   e.preventDefault();
 
   element.prepend(
     createMestoCard(mestoInput.value, linkInput.value)
   );
 
-  closePopup(popupAdd);
+  handleClosePopup(popupAdd);
   formElementAddCard.reset();
 }
 
@@ -84,7 +115,7 @@ function deleteCard(e) {
 /** Работа с фото */
 
 function showPhoto(e) {
-  openPopup(fullPhoto);
+  handleOpenPopup(fullPhoto);
   document.querySelector('.popup__card').src = e.target.src;
   document.querySelector('.popup__card').alt = e.target.alt;
   const rod = e.target.closest('.mesto-card');
@@ -92,66 +123,13 @@ function showPhoto(e) {
   document.querySelector('.popup__text').textContent = subtitle.textContent;
 }
 
-function validateInput(form, input, errorElement, formButton) {
-  const errorShort = `Минимальное количество символов ${input.minLength}. Длина текста сейчас: ${input.value.length} символ`;
-  if (input.validity.valueMissing) {
-    errorElement.textContent = "Вы пропустили это поле";
-    formButton.disabled = true;
-  } else if (input.validity.tooShort) {
-    errorElement.textContent = errorShort;
-    formButton.disabled = true;
-  } else if (input.validity.typeMismatch) {
-    errorElement.textContent = "Введите адрес сайта";
-    formButton.disabled = true;
-  } else {
-    errorElement.textContent = "";
-  }
-  if (form.checkValidity()) {
-    formButton.disabled = false;
-  }
-}
-
-function addValidationsToInputs(form, formButton) {
-  const formElements = Array.from(form.elements);
-  formElements.forEach(input => {
-    if (input.tagName === "INPUT") {
-      const errorElement = input.nextElementSibling;
-      input.addEventListener('input', (e) => {
-        e.preventDefault();
-        validateInput(form, e.target, errorElement, formButton);
-      });
-    }
-  })
-}
-
-function addValidationsToForms() {
-  const forms = Array.from(document.forms);
-  forms.forEach(form => {
-    const formButton = form.querySelector('.popup__button');
-    if (form.name === "popup-form-card") {
-      formButton.disabled = true;
-    }
-    addValidationsToInputs(form, formButton);
-  });
-}
-
-function resetFormsErrors() {
-  const forms = Array.from(document.forms);
-  forms.forEach(form => {
-    const errorElements = form.querySelectorAll('.popup__name_type_err');
-    errorElements.forEach(element => element.textContent = "");
-  });
-}
-
-photoCloseButton.addEventListener('click', () => closePopup(fullPhoto));
-profileButton.addEventListener('click', showClick);
-closeIcon.addEventListener('click', () => closePopup(popup));
-formElement.addEventListener('submit', formSubmitHandler);
-profileButtonAdd.addEventListener('click', () => openPopup(popupAdd));
-popupAddCloseButton.addEventListener('click', () => closePopup(popupAdd));
-popupAdd.addEventListener('submit', formSubmitAddMesto);
-addValidationsToForms();
-
-
-
-
+photoCloseButton.addEventListener('click', () => handleClosePopup(fullPhoto));
+profileButton.addEventListener('click', handleShowProfile);
+closeIcon.addEventListener('click', () => handleClosePopup(popup));
+formElement.addEventListener('submit', handleProfileSubmit);
+profileButtonAdd.addEventListener('click', () => handleOpenPopup(popupAdd));
+popupAddCloseButton.addEventListener('click', () => handleClosePopup(popupAdd));
+popupAdd.addEventListener('submit', handleAddMestoSubmit);
+popupProfileOverlay.addEventListener('click', handleClickOverlay);
+popupAddMestoOverlay.addEventListener('click', handleClickOverlay);
+document.addEventListener('keydown', handleClosePopupEsc);
