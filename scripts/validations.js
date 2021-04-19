@@ -1,15 +1,8 @@
 const forms = Array.from(document.querySelectorAll(allClasses.formSelector));
 
 function validateInput(form, input, errorElement, formButton) {
-  const errorShort = `Минимальное количество символов ${input.minLength}. Длина текста сейчас: ${input.value.length} символ`;
-  if (input.validity.valueMissing) {
-    errorElement.textContent = "Вы пропустили это поле";
-    formButton.disabled = true;
-  } else if (input.validity.tooShort) {
-    errorElement.textContent = errorShort;
-    formButton.disabled = true;
-  } else if (input.validity.typeMismatch) {
-    errorElement.textContent = "Введите адрес сайта";
+  if (!input.validity.valid) {
+    errorElement.textContent = input.validationMessage;
     formButton.disabled = true;
   } else {
     errorElement.textContent = "";
@@ -34,10 +27,7 @@ function enableValidations(allClasses) {
   forms.forEach(form => {
     const formInputs = Array.from(form.querySelectorAll(allClasses.inputContainerSelector));
     const formButton = form.querySelector(allClasses.submitButtonSelector);
-    const disabledButtons = Array.from(document.querySelectorAll(allClasses.disabledButtonSelector));
-    disabledButtons.forEach(button => {
-      button.disabled = true;
-    })
+    disableSubmitButtons(allClasses);
     addValidationsToInputs(form, formButton, formInputs, allClasses);
   });
 }
@@ -48,6 +38,13 @@ function resetFormsErrors(allClasses) {
     const errorElements = form.querySelectorAll(allClasses.inputErrorSelector);
     errorElements.forEach(element => element.textContent = "");
   });
+}
+
+function disableSubmitButtons(allClasses) {
+  const disabledButtons = Array.from(document.querySelectorAll(allClasses.disabledButtonSelector));
+  disabledButtons.forEach(button => {
+    button.disabled = true;
+  })
 }
 
 enableValidations(allClasses);

@@ -19,6 +19,7 @@ const element = document.querySelector('.elements');
 const template = document.querySelector('#mesto-card');
 const popupProfileOverlay = document.querySelector('.popup.popup_type_edit');
 const popupAddMestoOverlay = document.querySelector('.popup.popup_type_new-card');
+const showImageOverlay = document.querySelector('.popup.popup_type_image');
 
 const allClasses = {
   formSelector: '.popup__input',
@@ -36,7 +37,6 @@ function handleOpenPopup(popup) {
 
 function handleClosePopup(popup) {
   popup.classList.remove('popup_opened');
-  resetFormsErrors(allClasses);
 }
 
 function handleClosePopupOpened() {
@@ -59,6 +59,7 @@ function handleClosePopupEsc(e) {
 }
 
 function handleShowProfile() {
+  resetFormsErrors(allClasses);
   handleOpenPopup(popup);
   nameInput.value = profileTitle.textContent;
   jobInput.value = profileSubtitle.textContent;
@@ -71,6 +72,11 @@ function handleProfileSubmit(evt) {
   profileSubtitle.textContent = jobInput.value;
 
   handleClosePopup(popup);
+}
+
+function handleShowAddMesto() {
+  resetFormsErrors(allClasses);
+  handleOpenPopup(popupAdd);
 }
 
 function createMestoCard(name, link) {
@@ -99,6 +105,7 @@ function handleAddMestoSubmit(e) {
 
   handleClosePopup(popupAdd);
   formElementAddCard.reset();
+  disableSubmitButtons(allClasses);
 }
 
 /** Кнопки на карточке */
@@ -127,9 +134,10 @@ photoCloseButton.addEventListener('click', () => handleClosePopup(fullPhoto));
 profileButton.addEventListener('click', handleShowProfile);
 closeIcon.addEventListener('click', () => handleClosePopup(popup));
 formElement.addEventListener('submit', handleProfileSubmit);
-profileButtonAdd.addEventListener('click', () => handleOpenPopup(popupAdd));
+profileButtonAdd.addEventListener('click', handleShowAddMesto);
 popupAddCloseButton.addEventListener('click', () => handleClosePopup(popupAdd));
 popupAdd.addEventListener('submit', handleAddMestoSubmit);
 popupProfileOverlay.addEventListener('click', handleClickOverlay);
 popupAddMestoOverlay.addEventListener('click', handleClickOverlay);
+showImageOverlay.addEventListener('click', handleClickOverlay);
 document.addEventListener('keydown', handleClosePopupEsc);
