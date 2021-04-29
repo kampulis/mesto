@@ -25,7 +25,7 @@ export class FormValidator {
       const errorElement = input.querySelector(this.allClasses.inputErrorSelector);
       inputElement.addEventListener('input', (e) => {
         e.preventDefault();
-        this._validateInput(this.form, e.target, errorElement, formButton);
+        this._validateInput(e.target, errorElement, formButton);
       });
     })
   }
