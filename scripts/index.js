@@ -1,3 +1,16 @@
+import { FormValidator, resetFormsErrors } from '../scripts/FormValidator.js';
+import initialCards from '../scripts/initial-сards.js';
+
+const allClasses = {
+  formSelector: '.popup__input',
+  inputErrorSelector: '.popup__name_type_err',
+  submitButtonSelector: '.popup__button',
+  inputContainerSelector: '.popup__name-container',
+  inputSelector: '.popup__name',
+  inputErrorSelector: '.popup__name.popup__name_type_err',
+  disabledButtonSelector: '.popup__container_new-card .popup__button',
+};
+
 const profile = document.querySelector('.profile');
 const profileButton = profile.querySelector('.profile__button');
 const popup = document.querySelector('.popup');
@@ -20,16 +33,8 @@ const template = document.querySelector('#mesto-card');
 const popupProfileOverlay = document.querySelector('.popup.popup_type_edit');
 const popupAddMestoOverlay = document.querySelector('.popup.popup_type_new-card');
 const showImageOverlay = document.querySelector('.popup.popup_type_image');
+const forms = Array.from(document.querySelectorAll(allClasses.formSelector));
 
-const allClasses = {
-  formSelector: '.popup__input',
-  inputErrorSelector: '.popup__name_type_err',
-  submitButtonSelector: '.popup__button',
-  inputContainerSelector: '.popup__name-container',
-  inputSelector: '.popup__name',
-  inputErrorSelector: '.popup__name.popup__name_type_err',
-  disabledButtonSelector: '.popup__container_new-card .popup__button',
-};
 
 function handleOpenPopup(popup) {
   popup.classList.add('popup_opened');
@@ -59,7 +64,7 @@ function handleClosePopupEsc(e) {
 }
 
 function handleShowProfile() {
-  resetFormsErrors(allClasses);
+  resetFormsErrors(forms, allClasses);
   handleOpenPopup(popup);
   nameInput.value = profileTitle.textContent;
   jobInput.value = profileSubtitle.textContent;
@@ -75,7 +80,7 @@ function handleProfileSubmit(evt) {
 }
 
 function handleShowAddMesto() {
-  resetFormsErrors(allClasses);
+  resetFormsErrors(forms, allClasses);
   handleOpenPopup(popupAdd);
 }
 
@@ -92,6 +97,11 @@ function createMestoCard(name, link) {
 
 initialCards.forEach(function (card) {
   element.prepend(createMestoCard(card.name, card.link));
+});
+
+forms.forEach(function (form) {
+  const formValidator = new FormValidator(allClasses, form);
+  formValidator.enableValidations();
 });
 
 /** Попап добавления новой карточки */
