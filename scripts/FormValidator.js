@@ -1,7 +1,6 @@
 
 
 export class FormValidator {
-
   constructor(allClasses, form) {
     this.allClasses = allClasses;
     this.form = form;
@@ -30,20 +29,20 @@ export class FormValidator {
     })
   }
 
-  _disableSubmitButtons() {
-    const disabledButtons = Array.from(document.querySelectorAll(this.allClasses.disabledButtonSelector));
-    disabledButtons.forEach(button => {
-      button.disabled = true;
-    })
-  }
-
   enableValidations() {
     const formInputs = Array.from(this.form.querySelectorAll(this.allClasses.inputContainerSelector));
     const formButton = this.form.querySelector(this.allClasses.submitButtonSelector);
-    this._disableSubmitButtons();
-    this._addValidationsToInputs(formButton, formInputs);
-  }
 
+    this._addValidationsToInputs(formButton, formInputs);
+    disableSubmitButtons(this.allClasses);
+  }
+}
+
+export function disableSubmitButtons(allClasses) {
+  const disabledButtons = Array.from(document.querySelectorAll(allClasses.disabledButtonSelector));
+  disabledButtons.forEach(button => {
+    button.disabled = true;
+  })
 }
 
 export function resetFormsErrors(forms, allClasses) {

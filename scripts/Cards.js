@@ -1,3 +1,7 @@
+import { disableSubmitButtons } from '../scripts/FormValidator.js';
+import { initialCards } from '../scripts/initialCards.js';
+import { allClasses } from '../scripts/index.js';
+
 const formElementAddCard = document.querySelector('.popup_type_new-card .popup__input');
 const mestoInput = document.querySelector('#mesto');
 const linkInput = document.querySelector('#link');
@@ -7,43 +11,12 @@ const popupProfileOverlay = document.querySelector('.popup.popup_type_edit');
 const fullPhoto = document.querySelector('.popup_type_image');
 const photoCloseButton = document.querySelector(".popup_type_image .popup__close-icon");
 
-
-
-export const initialCards = [
-  {
-    name: 'Архыз',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
-  },
-  {
-    name: 'Челябинская область',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
-  },
-  {
-    name: 'Иваново',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
-  },
-  {
-    name: 'Камчатка',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
-  },
-  {
-    name: 'Холмогорский район',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
-  },
-  {
-    name: 'Байкал',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
-  }
-];
-
-
-class Card {
+export class Card {
   constructor(name, link, templateSelector) {
     this.name = name;
     this.link = link;
     this.template = document.querySelector(templateSelector);
   }
-
 
   /** Попап добавления новой карточки */
 
@@ -91,7 +64,6 @@ export function handleClickOverlay(e) {
   if (element.classList.contains('popup')) {
     handleClosePopupOpened();
   }
-
 }
 
 export function handleClosePopupEsc(e) {
@@ -119,8 +91,5 @@ initialCards.forEach(function (cardData) {
   element.prepend(card.createMestoCard());
 });
 
-
-
 photoCloseButton.addEventListener('click', () => handleClosePopup(fullPhoto));
 popupProfileOverlay.addEventListener('click', handleClickOverlay);
-

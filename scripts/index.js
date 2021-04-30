@@ -1,5 +1,6 @@
 import { FormValidator, resetFormsErrors } from '../scripts/FormValidator.js';
 import {
+  Card,
   handleOpenPopup,
   handleClickOverlay,
   handleClosePopupEsc,
@@ -8,7 +9,7 @@ import {
   handleAddMestoSubmit,
 } from '../scripts/Cards.js';
 
-const allClasses = {
+export const allClasses = {
   formSelector: '.popup__input',
   inputErrorSelector: '.popup__name_type_err',
   submitButtonSelector: '.popup__button',
@@ -33,9 +34,6 @@ const forms = Array.from(document.querySelectorAll(allClasses.formSelector));
 const popupAddCloseButton = document.querySelector('.popup_type_new-card .popup__close-icon');
 const profileButtonAdd = document.querySelector(".profile__button-add");
 
-
-
-
 function handleShowProfile() {
   resetFormsErrors(forms, allClasses);
   handleOpenPopup(popup);
@@ -57,12 +55,10 @@ function handleShowAddMesto() {
   handleOpenPopup(popupAdd);
 }
 
-
 forms.forEach(function (form) {
   const formValidator = new FormValidator(allClasses, form);
   formValidator.enableValidations();
 });
-
 
 profileButton.addEventListener('click', handleShowProfile);
 closeIcon.addEventListener('click', () => handleClosePopup(popup));
