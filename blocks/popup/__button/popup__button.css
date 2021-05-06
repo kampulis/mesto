@@ -20,6 +20,10 @@
   cursor: pointer;
 }
 
+.popup__button:hover:disabled {
+  cursor: not-allowed;
+}
+
 .popup__button:disabled {
   opacity: 0.2;
   cursor: auto;
