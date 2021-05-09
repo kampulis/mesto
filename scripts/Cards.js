@@ -22,20 +22,22 @@ export class Card {
   }
 
   _showPhoto(e) {
-    const c = document.querySelector('.popup__card');
+    const card = document.querySelector('.popup__card');
     handleOpenPopup(fullPhoto);
-    c.src = e.target.src;
-    c.alt = e.target.alt;
-    const rod = e.target.closest('.mesto-card');
-    const subtitle = rod.querySelector('.mesto-card__subtitle-name');
+    card.src = e.target.src;
+    card.alt = e.target.alt;
+    const parent = e.target.closest('.mesto-card');
+    const subtitle = parent.querySelector('.mesto-card__subtitle-name');
     document.querySelector('.popup__text').textContent = subtitle.textContent;
   }
 
-  _getTemplate(newCard) {
-    const m = newCard.querySelector('.mesto-card__photo');
-    m.src = this.link;
-    m.alt = this.name;
+  _getTemplate() {
+    const newCard = this.template.content.cloneNode(true);
+    const mesto = newCard.querySelector('.mesto-card__photo');
+    mesto.src = this.link;
+    mesto.alt = this.name;
     newCard.querySelector('.mesto-card__subtitle-name').textContent = this.name;
+    return newCard;
   }
 
   _setEventListeners(newCard) {
@@ -45,8 +47,7 @@ export class Card {
   }
 
   createMestoCard() {
-    const newCard = this.template.content.cloneNode(true);
-    this._getTemplate(newCard);
+    const newCard = this._getTemplate();
     this._setEventListeners(newCard);
     return newCard;
   }

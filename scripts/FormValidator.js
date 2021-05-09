@@ -8,14 +8,26 @@ export class FormValidator {
 
   _validateInput(input, errorElement, formButton) {
     if (!input.validity.valid) {
-      errorElement.textContent = input.validationMessage;
-      formButton.disabled = true;
+      this._showInputError(input, errorElement);
+      this._toggleButtonState(formButton);
     } else {
-      errorElement.textContent = "";
+      this._hideInputError(errorElement);
     }
     if (this.form.checkValidity()) {
       formButton.disabled = false;
     }
+  }
+
+  _showInputError(input, errorElement) {
+    errorElement.textContent = input.validationMessage;
+  }
+
+  _toggleButtonState(formButton) {
+    formButton.disabled = true;
+  }
+
+  _hideInputError(errorElement) {
+    errorElement.textContent = "";
   }
 
   _addValidationsToInputs(formButton, formInputs) {
@@ -23,7 +35,6 @@ export class FormValidator {
       const inputElement = input.querySelector(this.allClasses.inputSelector)
       const errorElement = input.querySelector(this.allClasses.inputErrorSelector);
       inputElement.addEventListener('input', (e) => {
-        e.preventDefault();
         this._validateInput(e.target, errorElement, formButton);
       });
     })

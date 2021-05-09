@@ -36,7 +36,7 @@ const linkInput = document.querySelector('#link');
 const photoCloseButton = document.querySelector(".popup_type_image .popup__close-icon");
 const element = document.querySelector('.elements');
 const popupProfileOverlay = document.querySelector('.popup.popup_type_edit');
-
+const NUMBER_ELEMENT = 27;
 
 function handleShowProfile() {
   resetFormsErrors(forms, allClasses);
@@ -64,15 +64,6 @@ forms.forEach(function (form) {
   formValidator.enableValidations();
 });
 
-profileButton.addEventListener('click', handleShowProfile);
-closeIcon.addEventListener('click', () => handleClosePopup(popup));
-formElement.addEventListener('submit', handleProfileSubmit);
-popupAddMestoOverlay.addEventListener('click', handleClickOverlay);
-showImageOverlay.addEventListener('click', handleClickOverlay);
-popupAddCloseButton.addEventListener('click', () => handleClosePopup(popupAdd));
-profileButtonAdd.addEventListener('click', handleShowAddMesto);
-popupAdd.addEventListener('submit', handleAddMestoSubmit);
-
 
 
 function handleClosePopup(popup) {
@@ -93,7 +84,6 @@ function handleClickOverlay(e) {
 }
 
 function handleClosePopupEsc(e) {
-  const NUMBER_ELEMENT = 27;
   if (e.keyCode === NUMBER_ELEMENT) {
     handleClosePopupOpened();
   }
@@ -119,5 +109,16 @@ initialCards.forEach(function (cardData) {
   element.prepend(card.createMestoCard());
 });
 
+
+profileButton.addEventListener('click', handleShowProfile);
+closeIcon.addEventListener('click', () => handleClosePopup(popup));
+formElement.addEventListener('submit', handleProfileSubmit);
+popupAddMestoOverlay.addEventListener('click', handleClickOverlay);
+showImageOverlay.addEventListener('click', handleClickOverlay);
+popupAddCloseButton.addEventListener('click', () => handleClosePopup(popupAdd));
+profileButtonAdd.addEventListener('click', handleShowAddMesto);
+popupAdd.addEventListener('submit', handleAddMestoSubmit);
 photoCloseButton.addEventListener('click', () => handleClosePopup(fullPhoto));
 popupProfileOverlay.addEventListener('click', handleClickOverlay);
+
+
