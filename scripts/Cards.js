@@ -4,10 +4,11 @@ const fullPhoto = document.querySelector('.popup_type_image');
 
 
 export class Card {
-  constructor(name, link, templateSelector) {
+  constructor(name, link, templateSelector, handleCardClick) {
     this.name = name;
     this.link = link;
     this.template = document.querySelector(templateSelector);
+    this.handleCardClick = handleCardClick;
   }
 
   /** Попап добавления новой карточки */
@@ -22,13 +23,8 @@ export class Card {
   }
 
   _showPhoto(e) {
-    const card = document.querySelector('.popup__card');
-    handleOpenPopup(fullPhoto);
-    card.src = e.target.src;
-    card.alt = e.target.alt;
-    const parent = e.target.closest('.mesto-card');
-    const subtitle = parent.querySelector('.mesto-card__subtitle-name');
-    document.querySelector('.popup__text').textContent = subtitle.textContent;
+    this.handleCardClick(e);
+    return;
   }
 
   _getTemplate() {
@@ -43,7 +39,7 @@ export class Card {
   _setEventListeners(newCard) {
     newCard.querySelector('.mesto-card__subtitle-icon').addEventListener('click', this._addLike);
     newCard.querySelector('.mesto-card__trash').addEventListener('click', this._deleteCard);
-    newCard.querySelector('.mesto-card__photo').addEventListener('click', this._showPhoto);
+    newCard.querySelector('.mesto-card__photo').addEventListener('click', (e) => this._showPhoto(e));
   }
 
   createMestoCard() {

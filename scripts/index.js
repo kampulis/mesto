@@ -3,6 +3,10 @@ import {
   Card,
   popupAdd,
 } from '../scripts/Cards.js';
+import {
+  PopupWithImage,
+  PopupWithForm,
+} from '../scripts/Popup.js';
 import { disableSubmitButtons } from '../scripts/FormValidator.js';
 import { initialCards } from '../scripts/initialCards.js';
 
@@ -38,6 +42,8 @@ const element = document.querySelector('.elements');
 const popupProfileOverlay = document.querySelector('.popup.popup_type_edit');
 const NUMBER_ELEMENT = 27;
 
+const popupWithImage = new PopupWithImage('.popup.popup_type_image');
+
 function handleShowProfile() {
   resetFormsErrors(forms, allClasses);
   handleOpenPopup(popup);
@@ -58,13 +64,6 @@ function handleShowAddMesto() {
   resetFormsErrors(forms, allClasses);
   handleOpenPopup(popupAdd);
 }
-
-forms.forEach(function (form) {
-  const formValidator = new FormValidator(allClasses, form);
-  formValidator.enableValidations();
-});
-
-
 
 function handleClosePopup(popup) {
   document.removeEventListener('keydown', handleClosePopupEsc);
@@ -96,7 +95,12 @@ function handleOpenPopup(popup) {
 
 function handleAddMestoSubmit(e) {
   e.preventDefault();
-  const newCard = new Card(mestoInput.value, linkInput.value, '#mesto-card');
+  const newCard = new Card(
+    mestoInput.value,
+    linkInput.value,
+    '#mesto-card',
+    popupWithImage.open,
+  );
   element.prepend(newCard.createMestoCard());
 
   handleClosePopup(popupAdd);
@@ -104,8 +108,18 @@ function handleAddMestoSubmit(e) {
   disableSubmitButtons(allClasses);
 }
 
+forms.forEach(function (form) {
+  const formValidator = new FormValidator(allClasses, form);
+  formValidator.enableValidations();
+});
+
 initialCards.forEach(function (cardData) {
-  const card = new Card(cardData.name, cardData.link, '#mesto-card');
+  const card = new Card(
+    cardData.name,
+    cardData.link,
+    '#mesto-card',
+    popupWithImage.open,
+  );
   element.prepend(card.createMestoCard());
 });
 
@@ -118,7 +132,7 @@ showImageOverlay.addEventListener('click', handleClickOverlay);
 popupAddCloseButton.addEventListener('click', () => handleClosePopup(popupAdd));
 profileButtonAdd.addEventListener('click', handleShowAddMesto);
 popupAdd.addEventListener('submit', handleAddMestoSubmit);
-photoCloseButton.addEventListener('click', () => handleClosePopup(fullPhoto));
+photoCloseButton.addEventListener('click', popupWithImage.close);
 popupProfileOverlay.addEventListener('click', handleClickOverlay);
 
 
