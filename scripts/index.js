@@ -1,8 +1,7 @@
-import { FormValidator, resetFormsErrors } from '../scripts/FormValidator.js';
-import {
-  Card,
-  popupAdd,
-} from '../scripts/Cards.js';
+import { FormValidator } from '../scripts/FormValidator.js';
+import { Card } from '../scripts/Cards.js';
+import { UserInfo } from '../scripts/UserInfo.js';
+import { Section } from '../scripts/Section.js';
 import {
   PopupWithImage,
   PopupWithForm,
@@ -22,89 +21,48 @@ const allClasses = {
 
 const profile = document.querySelector('.profile');
 const profileButton = profile.querySelector('.profile__button');
-const popup = document.querySelector('.popup');
-const closeIcon = document.querySelector('.popup__close-icon');
-const formElement = document.querySelector('.popup__container_type_edit .popup__input');
-const nameInput = document.querySelector('#name');
-const jobInput = document.querySelector('#job');
-const profileTitle = document.querySelector('.profile__info-title');
-const profileSubtitle = document.querySelector('.profile__info-subtitle');
-const popupAddMestoOverlay = document.querySelector('.popup.popup_type_new-card');
-const showImageOverlay = document.querySelector('.popup.popup_type_image');
-const forms = Array.from(document.querySelectorAll(allClasses.formSelector));
-const popupAddCloseButton = document.querySelector('.popup_type_new-card .popup__close-icon');
 const profileButtonAdd = document.querySelector(".profile__button-add");
-const formElementAddCard = document.querySelector('.popup_type_new-card .popup__input');
-const mestoInput = document.querySelector('#mesto');
-const linkInput = document.querySelector('#link');
-const photoCloseButton = document.querySelector(".popup_type_image .popup__close-icon");
-const element = document.querySelector('.elements');
-const popupProfileOverlay = document.querySelector('.popup.popup_type_edit');
-const NUMBER_ELEMENT = 27;
-
+const forms = Array.from(document.querySelectorAll(allClasses.formSelector));
 const popupWithImage = new PopupWithImage('.popup.popup_type_image');
+const popupWithUserForm = new PopupWithForm('.popup.popup_type_edit', handleProfileSubmit);
+const popupWithAddMestoForm = new PopupWithForm('.popup.popup_type_new-card', handleAddMestoSubmit);
 
-function handleShowProfile() {
-  resetFormsErrors(forms, allClasses);
-  handleOpenPopup(popup);
-  nameInput.value = profileTitle.textContent;
-  jobInput.value = profileSubtitle.textContent;
-}
+const userInfo = new UserInfo({
+  nameSelector: '.profile__info-title',
+  aboutSelector: '.profile__info-subtitle',
+});
 
-function handleProfileSubmit(evt) {
+const section = new Section({
+  items: initialCards,
+  renderer: function (cardData) {
+    const card = new Card(
+      cardData.name,
+      cardData.link,
+      '#mesto-card',
+      popupWithImage.open,
+    );
+    return card.createMestoCard();
+  },
+}, '.elements');
+
+function handleProfileSubmit(evt, values) {
   evt.preventDefault();
 
-  profileTitle.textContent = nameInput.value;
-  profileSubtitle.textContent = jobInput.value;
-
-  handleClosePopup(popup);
+  const { name, about } = values;
+  userInfo.setUserInfo({ name, about });
 }
 
-function handleShowAddMesto() {
-  resetFormsErrors(forms, allClasses);
-  handleOpenPopup(popupAdd);
-}
-
-function handleClosePopup(popup) {
-  document.removeEventListener('keydown', handleClosePopupEsc);
-  popup.classList.remove('popup_opened');
-}
-
-function handleClosePopupOpened() {
-  const popup = document.querySelector('.popup_opened');
-  handleClosePopup(popup);
-}
-
-function handleClickOverlay(e) {
-  const element = e.target;
-  if (element.classList.contains('popup')) {
-    handleClosePopupOpened();
-  }
-}
-
-function handleClosePopupEsc(e) {
-  if (e.keyCode === NUMBER_ELEMENT) {
-    handleClosePopupOpened();
-  }
-}
-
-function handleOpenPopup(popup) {
-  document.addEventListener('keydown', handleClosePopupEsc);
-  popup.classList.add('popup_opened');
-}
-
-function handleAddMestoSubmit(e) {
+function handleAddMestoSubmit(e, values) {
   e.preventDefault();
+
+  const { mesto, link } = values;
   const newCard = new Card(
-    mestoInput.value,
-    linkInput.value,
+    mesto,
+    link,
     '#mesto-card',
     popupWithImage.open,
   );
-  element.prepend(newCard.createMestoCard());
-
-  handleClosePopup(popupAdd);
-  formElementAddCard.reset();
+  section.addItem(newCard.createMestoCard());
   disableSubmitButtons(allClasses);
 }
 
@@ -113,26 +71,10 @@ forms.forEach(function (form) {
   formValidator.enableValidations();
 });
 
-initialCards.forEach(function (cardData) {
-  const card = new Card(
-    cardData.name,
-    cardData.link,
-    '#mesto-card',
-    popupWithImage.open,
-  );
-  element.prepend(card.createMestoCard());
-});
+section.render();
 
-
-profileButton.addEventListener('click', handleShowProfile);
-closeIcon.addEventListener('click', () => handleClosePopup(popup));
-formElement.addEventListener('submit', handleProfileSubmit);
-popupAddMestoOverlay.addEventListener('click', handleClickOverlay);
-showImageOverlay.addEventListener('click', handleClickOverlay);
-popupAddCloseButton.addEventListener('click', () => handleClosePopup(popupAdd));
-profileButtonAdd.addEventListener('click', handleShowAddMesto);
-popupAdd.addEventListener('submit', handleAddMestoSubmit);
-photoCloseButton.addEventListener('click', popupWithImage.close);
-popupProfileOverlay.addEventListener('click', handleClickOverlay);
-
-
+popupWithImage.setEventListeners();
+popupWithUserForm.setEventListeners();
+popupWithAddMestoForm.setEventListeners();
+profileButton.addEventListener('click', popupWithUserForm.open);
+profileButtonAdd.addEventListener('click', popupWithAddMestoForm.open);

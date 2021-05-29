@@ -1,0 +1,19 @@
+{
+  "name": "mesto",
+  "version": "0.0.1",
+  "description": "**Описание** Сайт, на который можно добавлять карточки с различными местами, ставить лайки и менять информацию в профиле.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kampulis/mesto.git"
+  },
+  "author": "Kseniya_Onuprienko",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kampulis/mesto/issues"
+  },
+  "homepage": "https://github.com/kampulis/mesto#readme"
+}

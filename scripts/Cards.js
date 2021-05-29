@@ -1,7 +1,5 @@
 
 export const popupAdd = document.querySelector(".popup_type_new-card");
-const fullPhoto = document.querySelector('.popup_type_image');
-
 
 export class Card {
   constructor(name, link, templateSelector, handleCardClick) {
