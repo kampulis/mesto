@@ -9,6 +9,8 @@ import {
 import { disableSubmitButtons } from '../scripts/FormValidator.js';
 import { initialCards } from '../scripts/initialCards.js';
 
+import '../pages/index.css';
+
 const allClasses = {
   formSelector: '.popup__input',
   inputErrorSelector: '.popup__name_type_err',
