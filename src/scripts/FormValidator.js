@@ -9,7 +9,7 @@ export class FormValidator {
   _validateInput(input, errorElement, formButton) {
     if (!input.validity.valid) {
       this._showInputError(input, errorElement);
-      this._toggleButtonState(formButton);
+      this._disableButton(formButton);
     } else {
       this._hideInputError(errorElement);
     }
@@ -22,8 +22,8 @@ export class FormValidator {
     errorElement.textContent = input.validationMessage;
   }
 
-  _toggleButtonState(formButton) {
-    formButton.disabled = true;
+  _disableButton(button) {
+    button.disabled = true;
   }
 
   _hideInputError(errorElement) {

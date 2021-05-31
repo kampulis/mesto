@@ -1,5 +1,3 @@
-import { UserInfo } from '../scripts/UserInfo.js';
-
 const NUMBER_ELEMENT = 27;
 export class Popup {
   constructor(selector) {
@@ -55,9 +53,10 @@ export class PopupWithImage extends Popup {
 }
 
 export class PopupWithForm extends Popup {
-  constructor(selector, submitFormHandler) {
+  constructor(selector, submitFormHandler, userInfo) {
     super(selector);
     this.submitFormHandler = submitFormHandler;
+    this.userInfo = userInfo;
     this.form = this.popup.querySelector('form');
     this.setEventListeners = this.setEventListeners.bind(this);
     this.close = this.close.bind(this);
@@ -69,25 +68,24 @@ export class PopupWithForm extends Popup {
     const mestoInput = this.form.querySelector('#mesto');
     const linkInput = this.form.querySelector('#link');
 
-    return {
-      name: nameInput && nameInput.value,
-      about: jobInput && jobInput.value,
-      mesto: mestoInput && mestoInput.value,
-      link: linkInput && linkInput.value,
-    }
+    const values = {};
+
+    if (nameInput) values.name = nameInput.value;
+    if (jobInput) values.about = jobInput.value;
+    if (mestoInput) values.mesto = mestoInput.value;
+    if (linkInput) values.link = linkInput.value;
+
+    return values;
   }
 
   _setInputValues() {
-    const userInfo = new UserInfo({
-      nameSelector: '.profile__info-title',
-      aboutSelector: '.profile__info-subtitle',
-    });
 
-    const { name, about } = userInfo.getUserInfo();
     const nameInput = this.form.querySelector('#name');
     const jobInput = this.form.querySelector('#job');
 
     if (nameInput && jobInput) {
+      const { name, about } = this.userInfo.getUserInfo();
+
       nameInput.value = name;
       jobInput.value = about;
     }
