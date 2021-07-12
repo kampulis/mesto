@@ -1,4 +1,4 @@
-const NUMBER_ELEMENT = 27;
+const ESCAPE_KEYCODE = 27;
 export class Popup {
   constructor(selector) {
     this.popup = document.querySelector(selector);
@@ -9,7 +9,7 @@ export class Popup {
   }
 
   _handleEscClose(e) {
-    if (e.keyCode === NUMBER_ELEMENT) {
+    if (e.keyCode === ESCAPE_KEYCODE) {
       this.close();
     }
   }
@@ -43,7 +43,7 @@ export class PopupWithImage extends Popup {
 
   open(e) {
     super.open();
-    const card = document.querySelector('.popup__card');
+    const card = document.querySelector(this.popup);
     card.src = e.target.src;
     card.alt = e.target.alt;
     const parent = e.target.closest('.mesto-card');
@@ -63,18 +63,12 @@ export class PopupWithForm extends Popup {
   }
 
   _getInputValues() {
-    const nameInput = this.form.querySelector('#name');
-    const jobInput = this.form.querySelector('#job');
-    const mestoInput = this.form.querySelector('#mesto');
-    const linkInput = this.form.querySelector('#link');
 
     const values = {};
 
-    if (nameInput) values.name = nameInput.value;
-    if (jobInput) values.about = jobInput.value;
-    if (mestoInput) values.mesto = mestoInput.value;
-    if (linkInput) values.link = linkInput.value;
-
+    this.form.querySelectorAll('input').forEach((input) => {
+      values[input.name] = input.value;
+    });
     return values;
   }
 
