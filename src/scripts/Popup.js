@@ -5,7 +5,6 @@ export class Popup {
     this._handleEscClose = this._handleEscClose.bind(this);
     this.open = this.open.bind(this);
     this.close = this.close.bind(this);
-    this.setEventListeners = this.setEventListeners.bind(this);
   }
 
   _handleEscClose(e) {
@@ -43,7 +42,7 @@ export class PopupWithImage extends Popup {
 
   open(e) {
     super.open();
-    const card = document.querySelector(this.popup);
+    const card = this.popup;
     card.src = e.target.src;
     card.alt = e.target.alt;
     const parent = e.target.closest('.mesto-card');
@@ -58,8 +57,6 @@ export class PopupWithForm extends Popup {
     this.submitFormHandler = submitFormHandler;
     this.userInfo = userInfo;
     this.form = this.popup.querySelector('form');
-    this.setEventListeners = this.setEventListeners.bind(this);
-    this.close = this.close.bind(this);
   }
 
   _getInputValues() {
