@@ -46,11 +46,24 @@ const section = new Section({
   },
 }, '.elements');
 
+
+function setInputValues(userInfo) {
+  const nameInput = document.querySelector('#name');
+  const jobInput = document.querySelector('#job');
+
+  if (nameInput && jobInput) {
+    const { name, about } = userInfo.getUserInfo();
+
+    nameInput.value = name;
+    jobInput.value = about;
+  }
+}
+
 function handleProfileSubmit(evt, values) {
   evt.preventDefault();
 
-  const { name, about } = values;
-  userInfo.setUserInfo({ name, about });
+  const { name, job } = values;
+  userInfo.setUserInfo({ name, job });
 }
 
 function handleAddMestoSubmit(e, values) {
@@ -77,5 +90,8 @@ section.render();
 popupWithImage.setEventListeners();
 popupWithUserForm.setEventListeners();
 popupWithAddMestoForm.setEventListeners();
-profileButton.addEventListener('click', popupWithUserForm.open);
-profileButtonAdd.addEventListener('click', popupWithAddMestoForm.open);
+profileButton.addEventListener('click', () => {
+  popupWithUserForm.open();
+  setInputValues(userInfo);
+});
+profileButtonAdd.addEventListener('click', popupWithAddMestoForm.open)

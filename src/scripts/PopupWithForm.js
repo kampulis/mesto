@@ -18,18 +18,6 @@ export class PopupWithForm extends Popup {
     return values;
   }
 
-  _setInputValues() {
-
-    const nameInput = this.form.querySelector('#name');
-    const jobInput = this.form.querySelector('#job');
-
-    if (nameInput && jobInput) {
-      const { name, about } = this.userInfo.getUserInfo();
-
-      nameInput.value = name;
-      jobInput.value = about;
-    }
-  }
 
   setEventListeners() {
     super.setEventListeners();
@@ -37,11 +25,6 @@ export class PopupWithForm extends Popup {
       this.submitFormHandler(e, this._getInputValues());
       this.close();
     })
-  }
-
-  open() {
-    super.open();
-    this._setInputValues();
   }
 
   close() {

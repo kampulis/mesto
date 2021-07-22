@@ -11,8 +11,8 @@ export class UserInfo {
     };
   }
 
-  setUserInfo({ name, about }) {
+  setUserInfo({ name, job }) {
     this.profileTitle.textContent = name;
-    this.profileSubtitle.textContent = about;
+    this.profileSubtitle.textContent = job;
   }
 }
