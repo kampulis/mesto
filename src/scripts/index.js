@@ -2,10 +2,8 @@ import { FormValidator } from '../scripts/FormValidator.js';
 import { Card } from '../scripts/Cards.js';
 import { UserInfo } from '../scripts/UserInfo.js';
 import { Section } from '../scripts/Section.js';
-import {
-  PopupWithImage,
-  PopupWithForm,
-} from '../scripts/Popup.js';
+import { PopupWithImage } from '../scripts/PopupWithImage.js';
+import { PopupWithForm } from '../scripts/PopupWithForm.js';
 import { disableSubmitButtons } from '../scripts/FormValidator.js';
 import { initialCards } from '../scripts/initialCards.js';
 
