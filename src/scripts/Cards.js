@@ -26,12 +26,7 @@ export class Card {
   }
 
   _getTemplate() {
-    const newCard = this.template.content.cloneNode(true);
-    const mesto = newCard.querySelector('.mesto-card__photo');
-    mesto.src = this.link;
-    mesto.alt = this.name;
-    newCard.querySelector('.mesto-card__subtitle-name').textContent = this.name;
-    return newCard;
+    return this.template.content.cloneNode(true);
   }
 
   _setEventListeners(newCard) {
@@ -42,6 +37,11 @@ export class Card {
 
   createMestoCard() {
     const newCard = this._getTemplate();
+    const mesto = newCard.querySelector('.mesto-card__photo');
+    mesto.src = this.link;
+    mesto.alt = this.name;
+    newCard.querySelector('.mesto-card__subtitle-name').textContent = this.name;
+
     this._setEventListeners(newCard);
     return newCard;
   }

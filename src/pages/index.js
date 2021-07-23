@@ -26,10 +26,14 @@ const userInfo = new UserInfo({
 const popupWithUserForm = new PopupWithForm('.popup.popup_type_edit', handleProfileSubmit, userInfo);
 const popupWithAddMestoForm = new PopupWithForm('.popup.popup_type_new-card', handleAddMestoSubmit, userInfo);
 
+function createCard(name, link, selector, handler) {
+  return new Card(name, link, selector, handler);
+}
+
 const section = new Section({
   items: initialCards,
   renderer: function (cardData) {
-    const card = new Card(
+    const card = createCard(
       cardData.name,
       cardData.link,
       '#mesto-card',
@@ -63,7 +67,7 @@ function handleAddMestoSubmit(e, values) {
   e.preventDefault();
 
   const { mesto, link } = values;
-  const newCard = new Card(
+  const newCard = createCard(
     mesto,
     link,
     '#mesto-card',
