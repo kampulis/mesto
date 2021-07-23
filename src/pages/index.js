@@ -1,23 +1,16 @@
 import { FormValidator } from '../scripts/FormValidator.js';
 import { Card } from '../scripts/Cards.js';
-import { UserInfo } from '../scripts/UserInfo.js';
 import { Section } from '../scripts/Section.js';
+import { UserInfo } from '../scripts/UserInfo.js';
 import { PopupWithImage } from '../scripts/PopupWithImage.js';
 import { PopupWithForm } from '../scripts/PopupWithForm.js';
 import { disableSubmitButtons } from '../scripts/FormValidator.js';
-import { initialCards } from '../scripts/initialCards.js';
+import {
+  allClasses,
+  initialCards
+} from '../scripts/utils/constants.js';
 
-import '../pages/index.css';
-
-const allClasses = {
-  formSelector: '.popup__input',
-  inputErrorSelector: '.popup__name_type_err',
-  submitButtonSelector: '.popup__button',
-  inputContainerSelector: '.popup__name-container',
-  inputSelector: '.popup__name',
-  inputErrorSelector: '.popup__name.popup__name_type_err',
-  disabledButtonSelector: '.popup__container_new-card .popup__button',
-};
+import './index.css';
 
 const profile = document.querySelector('.profile');
 const profileButton = profile.querySelector('.profile__button');

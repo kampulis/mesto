@@ -1,3 +1,14 @@
+
+export const allClasses = {
+  formSelector: '.popup__input',
+  inputErrorSelector: '.popup__name_type_err',
+  submitButtonSelector: '.popup__button',
+  inputContainerSelector: '.popup__name-container',
+  inputSelector: '.popup__name',
+  inputErrorSelector: '.popup__name.popup__name_type_err',
+  disabledButtonSelector: '.popup__container_new-card .popup__button',
+};
+
 export const initialCards = [
   {
     name: 'Архыз',
