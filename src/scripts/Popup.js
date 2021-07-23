@@ -2,6 +2,8 @@ const ESCAPE_KEYCODE = 27;
 export class Popup {
   constructor(selector) {
     this.popup = document.querySelector(selector);
+    this.open = this.open.bind(this);
+    this.close = this.close.bind(this);
     this._handleEscClose = this._handleEscClose.bind(this);
   }
 
@@ -11,12 +13,12 @@ export class Popup {
     }
   }
 
-  open = () => {
+  open() {
     document.addEventListener('keydown', this._handleEscClose);
     this.popup.classList.add('popup_opened');
   }
 
-  close = () => {
+  close() {
     document.removeEventListener('keydown', this._handleClosePopupEsc);
     this.popup.classList.remove('popup_opened');
   }

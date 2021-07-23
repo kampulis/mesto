@@ -16,13 +16,13 @@ const profile = document.querySelector('.profile');
 const profileButton = profile.querySelector('.profile__button');
 const profileButtonAdd = document.querySelector(".profile__button-add");
 const forms = Array.from(document.querySelectorAll(allClasses.formSelector));
-const popupWithImage = new PopupWithImage('.popup.popup_type_image');
 
 const userInfo = new UserInfo({
   nameSelector: '.profile__info-title',
   aboutSelector: '.profile__info-subtitle',
 });
 
+const popupWithImage = new PopupWithImage('.popup.popup_type_image');
 const popupWithUserForm = new PopupWithForm('.popup.popup_type_edit', handleProfileSubmit, userInfo);
 const popupWithAddMestoForm = new PopupWithForm('.popup.popup_type_new-card', handleAddMestoSubmit, userInfo);
 
