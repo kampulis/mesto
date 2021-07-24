@@ -1,8 +1,7 @@
-
-export const popupAdd = document.querySelector(".popup_type_new-card");
+import { popupAdd } from './utils/constants.js';
 
 export class Card {
-  constructor(name, link, templateSelector, handleCardClick) {
+  constructor({ name, link }, templateSelector, handleCardClick) {
     this.name = name;
     this.link = link;
     this.template = document.querySelector(templateSelector);
