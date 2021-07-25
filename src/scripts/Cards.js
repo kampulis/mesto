@@ -1,5 +1,3 @@
-import { popupAdd } from './utils/constants.js';
-
 export class Card {
   constructor({ name, link }, templateSelector, handleCardClick) {
     this.name = name;

@@ -1,5 +1,6 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CopyPlugin = require('copy-webpack-plugin');
 const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
 
@@ -16,28 +17,22 @@ module.exports = {
     rules: [
       {
         test: /\.js/,
-        include: [
-          path.resolve(__dirname, "src"),
-        ],
+        include: [path.resolve(__dirname, "src")],
         loader: "babel-loader",
       },
       {
         test: /\.css$/i,
         use: [
-          "style-loader",
-          "css-loader",
           {
             loader: "postcss-loader",
             options: {
               postcssOptions: {
-                plugins: [
-                  [
-                    "postcss-preset-env",
-                  ],
-                ],
+                plugins: [["postcss-preset-env"]],
               },
             },
           },
+          MiniCssExtractPlugin.loader,
+          "css-loader",
         ],
       },
       {
@@ -54,6 +49,7 @@ module.exports = {
     new HtmlWebpackPlugin({
       template: 'src/index.html',
     }),
+    new MiniCssExtractPlugin(),
     new CopyPlugin({
       patterns: [
         { from: "src/images", to: "images" },
@@ -62,6 +58,7 @@ module.exports = {
   ],
   optimization: {
     minimizer: [
+      `...`,
       new CssMinimizerPlugin(),
     ],
   },
