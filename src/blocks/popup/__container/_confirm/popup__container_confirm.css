@@ -1,0 +1,10 @@
+@media screen and (max-width: 580px) {
+  .popup__container_confirm {
+    padding-left: 22px;
+    padding-right: 22px;
+  }
+}
+
+.popup__container_confirm {
+  z-index: 5;
+}

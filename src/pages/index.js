@@ -11,6 +11,7 @@ import {
   profileButton,
   profileButtonAdd,
   section,
+  popupSubmit
 } from '../scripts/utils/constants.js';
 
 import './index.css';
@@ -39,3 +40,4 @@ profileButton.addEventListener('click', () => {
   setInputValues(userInfo);
 });
 profileButtonAdd.addEventListener('click', popupWithAddMestoForm.open)
+

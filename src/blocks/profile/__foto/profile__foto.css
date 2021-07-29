@@ -4,6 +4,11 @@
   border-radius: 100%;
 }
 
+.profile__foto:hover {
+  opacity: 0.3;
+  cursor: pointer;
+}
+
 @media screen and (min-width: 1028px) {
   .profile__foto {
     margin-right: 30px;

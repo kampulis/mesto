@@ -1,0 +1,11 @@
+.profile__foto-all:hover {
+  background-image: url('../../../images/Vecto.svg');
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+@media screen and (min-width: 1028px) {
+  .profile__foto-all {
+    padding-left: 30px;
+  }
+}

@@ -4,6 +4,7 @@ import { PopupWithImage } from '../PopupWithImage.js';
 import { PopupWithForm } from '../PopupWithForm.js';
 import { handleProfileSubmit, handleAddMestoSubmit } from './handlers.js';
 import { createCard } from './helpers.js';
+import { PopupWithSubmit } from '../PopupWithSubmit.js';
 
 export const allClasses = {
   formSelector: '.popup__input',
@@ -60,4 +61,6 @@ export const section = new Section({
 export const popupWithImage = new PopupWithImage('.popup.popup_type_image');
 export const popupWithUserForm = new PopupWithForm('.popup.popup_type_edit', handleProfileSubmit, userInfo);
 export const popupWithAddMestoForm = new PopupWithForm('.popup.popup_type_new-card', handleAddMestoSubmit, userInfo);
+export const popupSubmit = new PopupWithSubmit('.popup.popup_type_confirm', () => { });
+
 export const popupAdd = document.querySelector(".popup_type_new-card");

@@ -1,0 +1,11 @@
+.mesto-card__subtitle-icon-like {
+  font: Inter;
+  color: black;
+  width: 10px;
+  height: 13px;
+  margin: 0;
+  line-height: 15.73px;
+  font-size: 13px;
+  font-weight: 400;
+  margin-top: 3px;
+}
