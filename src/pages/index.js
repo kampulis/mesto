@@ -1,8 +1,6 @@
 import { FormValidator } from '../scripts/FormValidator.js';
-import { createCard } from '../scripts/utils/helpers.js';
 import {
   allClasses,
-  initialCards,
   forms,
   popupWithImage,
   popupWithUserForm,
@@ -11,7 +9,10 @@ import {
   profileButton,
   profileButtonAdd,
   section,
-  popupSubmit
+  api,
+  nameContainer,
+  aboutContainer,
+  fotoContainer
 } from '../scripts/utils/constants.js';
 
 import './index.css';
@@ -41,3 +42,11 @@ profileButton.addEventListener('click', () => {
 });
 profileButtonAdd.addEventListener('click', popupWithAddMestoForm.open)
 
+function processData(data) {
+  nameContainer.textContent = data.name;
+  aboutContainer.textContent = data.about;
+  console.log('>>', fotoContainer);
+  fotoContainer.src = data.avatar;
+}
+
+api.getInfoAboutPeople(processData);
