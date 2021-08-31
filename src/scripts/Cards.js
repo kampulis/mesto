@@ -46,5 +46,5 @@ export class Card {
     this._setEventListeners(newCard);
     return newCard;
   }
-};
+}
 

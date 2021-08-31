@@ -40,19 +40,23 @@ export class Api {
       });
   }
 
-  addNewcard(profileData) {
+  addNewСard(cardData, onSuccess) {
     fetch(
       this.baseUrl + 'cards',
       {
         method: 'POST',
         headers: this.headers,
-        body: JSON.stringify(profileData),
+        body: JSON.stringify(cardData),
       },
-    ).then(() => {
-      alert("Профиль успешно обновлен");
+    ).then((data) => {
+      data.json().then(data => {
+        onSuccess(data);
+        alert("Ваша картинка успешно добавлена");
+        console.log('response:', data);
+      });
     })
       .catch(() => {
-        alert("Ошибка обновления профиля");
+        alert("Пау-пау-пау-пааааау");
       });
   }
 }
