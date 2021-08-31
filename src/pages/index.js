@@ -31,15 +31,18 @@ forms.forEach(function (form) {
   formValidator.enableValidations();
 });
 
-section.render();
+section.initCards();
 
 popupWithImage.setEventListeners();
 popupWithUserForm.setEventListeners();
 popupWithAddMestoForm.setEventListeners();
+
 profileButton.addEventListener('click', () => {
   popupWithUserForm.open();
   setInputValues(userInfo);
+  
 });
+
 profileButtonAdd.addEventListener('click', popupWithAddMestoForm.open)
 
 function processData(data) {

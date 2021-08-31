@@ -1,7 +1,9 @@
 export class Card {
-  constructor({ name, link }, templateSelector, handleCardClick) {
+  constructor({ name, link, likes }, templateSelector, handleCardClick) {
     this.name = name;
     this.link = link;
+    this.likes = likes;
+
     this.template = document.querySelector(templateSelector);
     this.handleCardClick = handleCardClick;
   }
@@ -35,8 +37,10 @@ export class Card {
   createMestoCard() {
     const newCard = this._getTemplate();
     const mesto = newCard.querySelector('.mesto-card__photo');
+    const like = newCard.querySelector('.mesto-card__subtitle-icon-like');
     mesto.src = this.link;
     mesto.alt = this.name;
+    like.textContent = this.likes.length;
     newCard.querySelector('.mesto-card__subtitle-name').textContent = this.name;
 
     this._setEventListeners(newCard);

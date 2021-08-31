@@ -17,33 +17,6 @@ export const allClasses = {
   nameSelector: '.profile__info-title',
 };
 
-export const initialCards = [
-  {
-    name: 'Архыз',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
-  },
-  {
-    name: 'Челябинская область',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
-  },
-  {
-    name: 'Иваново',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
-  },
-  {
-    name: 'Камчатка',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
-  },
-  {
-    name: 'Холмогорский район',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
-  },
-  {
-    name: 'Байкал',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
-  }
-];
-
 const profile = document.querySelector('.profile');
 export const profileButton = profile.querySelector('.profile__button');
 export const profileButtonAdd = document.querySelector(".profile__button-add");
@@ -57,10 +30,6 @@ export const userInfo = new UserInfo({
   aboutSelector: '.profile__info-subtitle',
 });
 
-export const section = new Section({
-  items: initialCards,
-  renderer: ({ name, link }) => createCard(name, link),
-}, '.elements');
 
 export const popupWithImage = new PopupWithImage('.popup.popup_type_image');
 export const popupWithUserForm = new PopupWithForm('.popup.popup_type_edit', handleProfileSubmit, userInfo);
@@ -75,3 +44,10 @@ export const api = new Api({
     'Content-Type': 'application/json'
   }
 });
+
+export const section = new Section({
+  api,
+  renderer: ({ name, link, likes }) => createCard(name, link, likes),
+}, '.elements');
+
+
