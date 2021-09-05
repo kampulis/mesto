@@ -34,10 +34,9 @@ export class Api {
       },
     ).then(() => {
       alert("Профиль успешно обновлен");
-    })
-      .catch(() => {
-        alert("Ошибка обновления профиля");
-      });
+    }).catch(() => {
+      alert("Ошибка обновления профиля");
+    });
   }
 
   addNewСard(cardData, onSuccess) {
@@ -51,12 +50,29 @@ export class Api {
     ).then((data) => {
       data.json().then(data => {
         onSuccess(data);
-        alert("Ваша картинка успешно добавлена");
-        console.log('response:', data);
       });
-    })
-      .catch(() => {
+    }).catch(() => {
+      alert("Пау-пау-пау-пааааау");
+    });
+  }
+
+  deleteCard(cardId, onSuccess) {
+    fetch(
+      this.baseUrl + 'cards/' + cardId,
+      {
+        method: 'DELETE',
+        headers: this.headers,
+      },
+    ).then((data) => {
+      if (data.ok) {
+        data.json().then(data => {
+          onSuccess(data);
+        });
+      } else {
         alert("Пау-пау-пау-пааааау");
-      });
+      }
+    }).catch(() => {
+      alert("Пау-пау-пау-пааааау");
+    });
   }
 }

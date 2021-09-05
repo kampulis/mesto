@@ -10,9 +10,9 @@ export function handleProfileSubmit(evt, values) {
   api.updateEditProfile({ name, about: job });
 }
 
-const onAddMestoSuccess = ({ name, link, likes }) => {
+const onAddMestoSuccess = ({ name, link, likes, _id }) => {
 
-  section.addItem(createCard(name, link, likes));
+  section.addItem(createCard(name, link, likes, _id));
   disableSubmitButtons(allClasses);
 }
 

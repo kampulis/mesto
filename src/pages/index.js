@@ -12,7 +12,8 @@ import {
   api,
   nameContainer,
   aboutContainer,
-  fotoContainer
+  fotoContainer,
+  popupSubmit
 } from '../scripts/utils/constants.js';
 
 import './index.css';
@@ -36,11 +37,12 @@ section.initCards();
 popupWithImage.setEventListeners();
 popupWithUserForm.setEventListeners();
 popupWithAddMestoForm.setEventListeners();
+popupSubmit.setEventListeners();
 
 profileButton.addEventListener('click', () => {
   popupWithUserForm.open();
   setInputValues(userInfo);
-  
+
 });
 
 profileButtonAdd.addEventListener('click', popupWithAddMestoForm.open)
@@ -48,7 +50,6 @@ profileButtonAdd.addEventListener('click', popupWithAddMestoForm.open)
 function processData(data) {
   nameContainer.textContent = data.name;
   aboutContainer.textContent = data.about;
-  console.log('>>', fotoContainer);
   fotoContainer.src = data.avatar;
 }
 

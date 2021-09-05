@@ -1,11 +1,24 @@
 export class Card {
-  constructor({ name, link, likes }, templateSelector, handleCardClick) {
+  constructor(
+    api,
+    { name, link, likes, id },
+    templateSelector,
+    handleCardClick,
+    handleDeleteClick,
+    handleSubmitDelete,
+    handleDiscardDelete
+  ) {
+    this.id = id;
+    this.api = api;
     this.name = name;
     this.link = link;
     this.likes = likes;
 
     this.template = document.querySelector(templateSelector);
     this.handleCardClick = handleCardClick;
+    this.handleSubmitDelete = handleSubmitDelete;
+    this.handleDiscardDelete = handleDiscardDelete;
+    this.handleDeleteClick = handleDeleteClick;
   }
 
   /** Попап добавления новой карточки */
@@ -16,7 +29,14 @@ export class Card {
 
   _deleteCard(e) {
     const card = e.target.closest('.mesto-card');
-    card.remove();
+
+    this.api.deleteCard(this.id, () => {
+      card.remove();
+    });
+  }
+
+  _onDeleteButtonClick(e) {
+    this.handleDeleteClick(() => { this._deleteCard(e); });
   }
 
   _showPhoto(e) {
@@ -30,7 +50,7 @@ export class Card {
 
   _setEventListeners(newCard) {
     newCard.querySelector('.mesto-card__subtitle-icon').addEventListener('click', this._addLike);
-    newCard.querySelector('.mesto-card__trash').addEventListener('click', this._deleteCard);
+    newCard.querySelector('.mesto-card__trash').addEventListener('click', (e) => this._onDeleteButtonClick(e));
     newCard.querySelector('.mesto-card__photo').addEventListener('click', (e) => this._showPhoto(e));
   }
 

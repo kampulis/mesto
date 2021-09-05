@@ -20,6 +20,7 @@ export const allClasses = {
 const profile = document.querySelector('.profile');
 export const profileButton = profile.querySelector('.profile__button');
 export const profileButtonAdd = document.querySelector(".profile__button-add");
+export const trashButton = document.querySelector('.mesto-card__trash');
 export const nameContainer = document.querySelector(allClasses.nameSelector);
 export const aboutContainer = document.querySelector('.profile__info-subtitle');
 export const fotoContainer = document.querySelector('.profile__foto');
@@ -29,7 +30,6 @@ export const userInfo = new UserInfo({
   nameSelector: allClasses.nameSelector,
   aboutSelector: '.profile__info-subtitle',
 });
-
 
 export const popupWithImage = new PopupWithImage('.popup.popup_type_image');
 export const popupWithUserForm = new PopupWithForm('.popup.popup_type_edit', handleProfileSubmit, userInfo);
@@ -41,13 +41,12 @@ export const api = new Api({
   baseUrl: 'https://mesto.nomoreparties.co/v1/cohort-26/',
   headers: {
     authorization: '82256f25-365c-46ac-aa1f-a846129f6d77',
-    'Content-Type': 'application/json'
+    'Content-Type': 'application/json',
+    'Access-Control-Allow-Methods': 'POST, GET, DELETE',
   }
 });
 
 export const section = new Section({
   api,
-  renderer: ({ name, link, likes }) => createCard(name, link, likes),
+  renderer: ({ name, link, likes, _id }) => createCard(name, link, likes, _id),
 }, '.elements');
-
-
