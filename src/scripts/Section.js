@@ -1,6 +1,7 @@
 export class Section {
-  constructor({ api, renderer }, selector) {
+  constructor({ api, renderer, userInfo }, selector) {
     this.api = api;
+    this.userInfo = userInfo;
     this.renderer = renderer;
     this.container = document.querySelector(selector);
     this.onSuccess = this.onSuccess.bind(this);
@@ -12,14 +13,15 @@ export class Section {
 
   onSuccess(data) {
     this.items = data;
-    // let pik = document.querySelector('.mesto-card__subtitle-icon-like');
-    // pik = data.likes;
     this.render();
   }
 
   render() {
+    const { name } = this.userInfo.getUserInfo();
+
     this.items.forEach(item => {
-      const renderedItem = this.renderer(item);
+      const isOwner = name === item.owner.name;
+      const renderedItem = this.renderer(item, isOwner);
       this.addItem(renderedItem);
     });
   }

@@ -1,4 +1,5 @@
 .mesto-card__trash {
+  display: none;
   background-image: url('../../../images/trash.svg');
   width: 18px;
   height: 19px;

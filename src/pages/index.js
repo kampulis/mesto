@@ -32,8 +32,6 @@ forms.forEach(function (form) {
   formValidator.enableValidations();
 });
 
-section.initCards();
-
 popupWithImage.setEventListeners();
 popupWithUserForm.setEventListeners();
 popupWithAddMestoForm.setEventListeners();
@@ -47,10 +45,10 @@ profileButton.addEventListener('click', () => {
 
 profileButtonAdd.addEventListener('click', popupWithAddMestoForm.open)
 
-function processData(data) {
+api.getInfoAboutPeople((data) => {
   nameContainer.textContent = data.name;
   aboutContainer.textContent = data.about;
   fotoContainer.src = data.avatar;
-}
 
-api.getInfoAboutPeople(processData);
+  section.initCards();
+});

@@ -1,7 +1,8 @@
 export class Card {
   constructor(
     api,
-    { name, link, likes, id },
+    { name, link, likes, id, owner },
+    isOwner,
     templateSelector,
     handleCardClick,
     handleDeleteClick,
@@ -13,6 +14,8 @@ export class Card {
     this.name = name;
     this.link = link;
     this.likes = likes;
+    this.owner = owner;
+    this.isOwner = isOwner;
 
     this.template = document.querySelector(templateSelector);
     this.handleCardClick = handleCardClick;
@@ -54,6 +57,12 @@ export class Card {
     newCard.querySelector('.mesto-card__photo').addEventListener('click', (e) => this._showPhoto(e));
   }
 
+  _showTrash(newCard) {
+    if (this.isOwner === true) {
+      newCard.querySelector('.mesto-card__trash').style.display = "block"
+    }
+  }
+
   createMestoCard() {
     const newCard = this._getTemplate();
     const mesto = newCard.querySelector('.mesto-card__photo');
@@ -62,6 +71,7 @@ export class Card {
     mesto.alt = this.name;
     like.textContent = this.likes.length;
     newCard.querySelector('.mesto-card__subtitle-name').textContent = this.name;
+    this._showTrash(newCard);
 
     this._setEventListeners(newCard);
     return newCard;

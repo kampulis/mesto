@@ -46,7 +46,10 @@ export const api = new Api({
   }
 });
 
+const renderer = ({ name, link, likes, _id }, isOwner) => createCard(name, link, likes, _id, isOwner);
+
 export const section = new Section({
   api,
-  renderer: ({ name, link, likes, _id }) => createCard(name, link, likes, _id),
+  renderer,
+  userInfo,
 }, '.elements');
