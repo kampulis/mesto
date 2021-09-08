@@ -13,7 +13,8 @@ import {
   nameContainer,
   aboutContainer,
   fotoContainer,
-  popupSubmit
+  popupSubmit,
+  popupEditAvatar
 } from '../scripts/utils/constants.js';
 
 import './index.css';
@@ -25,6 +26,8 @@ function setInputValues(userInfo) {
 
   nameInput.value = name;
   jobInput.value = about;
+
+
 }
 
 forms.forEach(function (form) {
@@ -36,12 +39,19 @@ popupWithImage.setEventListeners();
 popupWithUserForm.setEventListeners();
 popupWithAddMestoForm.setEventListeners();
 popupSubmit.setEventListeners();
+popupEditAvatar.setEventListeners();
 
 profileButton.addEventListener('click', () => {
   popupWithUserForm.open();
   setInputValues(userInfo);
 
 });
+
+fotoContainer.addEventListener('click', () => {
+  popupEditAvatar.open();
+  setInputValues(userInfo);
+});
+
 
 profileButtonAdd.addEventListener('click', popupWithAddMestoForm.open)
 
@@ -52,3 +62,5 @@ api.getInfoAboutPeople((data) => {
 
   section.initCards();
 });
+
+// api.updateEditAvatar();

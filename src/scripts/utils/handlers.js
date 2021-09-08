@@ -1,6 +1,6 @@
 import { disableSubmitButtons } from '../FormValidator.js';
 import { createCard } from './helpers.js';
-import { userInfo, section, allClasses, api } from './constants.js';
+import { userInfo, section, allClasses, api, fotoContainer  } from './constants.js';
 
 export function handleProfileSubmit(evt, values) {
   evt.preventDefault();
@@ -25,4 +25,17 @@ export function handleAddMestoSubmit(e, values) {
     { name: mesto, link },
     onAddMestoSuccess,
   );
+}
+
+const onAddAvatarSuccess = (avatarUrl) => {
+  fotoContainer.src = avatarUrl;
+};
+
+
+export function handleEditAvatar(e, values) {
+  e.preventDefault();
+
+  const { link } = values;
+
+  api.updateEditAvatar(link, onAddAvatarSuccess);
 }

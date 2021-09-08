@@ -39,6 +39,24 @@ export class Api {
     });
   }
 
+  updateEditAvatar(avatarUrl, onSuccess) {
+    fetch(
+      this.baseUrl + 'users/me/avatar',
+      {
+        method: 'PATCH',
+        headers: this.headers,
+        body: JSON.stringify({ avatar: avatarUrl }),
+      },
+    ).then((data) => {
+      if (data.ok) {
+        onSuccess(avatarUrl);
+      }
+    }).catch(() => {
+      alert("Ошибка обновления аватара");
+    });
+  }
+
+
   addNewСard(cardData, onSuccess) {
     fetch(
       this.baseUrl + 'cards',
