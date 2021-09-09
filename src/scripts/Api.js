@@ -93,4 +93,25 @@ export class Api {
       alert("Пау-пау-пау-пааааау");
     });
   }
+
+  updateLike(cardId, onSuccess, isDelete) {
+    fetch(
+      this.baseUrl + 'cards/likes/' + cardId,
+      {
+        method: isDelete ? 'DELETE' : 'PUT',
+        headers: this.headers,
+      },
+    ).then((data) => {
+      if (data.ok) {
+        data.json().then(data => {
+          onSuccess(data);
+        });
+      } else {
+        alert("Пау-пау-пау-пааааау");
+      }
+    }).catch(() => {
+      alert("Пау-пау-пау-пааааау");
+    });
+  }
+
 }

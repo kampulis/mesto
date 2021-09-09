@@ -17,11 +17,10 @@ export class Section {
   }
 
   render() {
-    const { name } = this.userInfo.getUserInfo();
+    const currentUser = this.userInfo.getUserInfo();
 
     this.items.forEach(item => {
-      const isOwner = name === item.owner.name;
-      const renderedItem = this.renderer(item, isOwner);
+      const renderedItem = this.renderer(item, currentUser);
       this.addItem(renderedItem);
     });
   }

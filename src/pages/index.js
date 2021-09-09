@@ -26,8 +26,6 @@ function setInputValues(userInfo) {
 
   nameInput.value = name;
   jobInput.value = about;
-
-
 }
 
 forms.forEach(function (form) {
@@ -62,5 +60,3 @@ api.getInfoAboutPeople((data) => {
 
   section.initCards();
 });
-
-// api.updateEditAvatar();
