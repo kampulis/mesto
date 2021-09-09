@@ -7,20 +7,28 @@ export class Api {
   getInitialCards(onSuccess) {
     fetch(this.baseUrl + 'cards', { headers: this.headers })
       .then((res) => {
-        res.json().then(data => onSuccess(data));
+        if (res.ok) {
+          res.json().then(data => onSuccess(data));
+        } else {
+          return Promise.reject(`Ошибка: ${res.status}`);
+        }
       })
       .catch((err) => {
-        console.log(err);
+        return Promise.reject(`Ошибка: ${err}`);
       });
   }
 
   getInfoAboutPeople(onSuccess) {
     fetch(this.baseUrl + 'users/me/', { headers: this.headers })
       .then((res) => {
-        res.json().then(data => onSuccess(data));
+        if (res.ok) {
+          res.json().then(data => onSuccess(data));
+        } else {
+          return Promise.reject(`Ошибка: ${res.status}`);
+        }
       })
       .catch((err) => {
-        console.log(err);
+        return Promise.reject(`Ошибка: ${err}`);
       });
   }
 
@@ -51,12 +59,14 @@ export class Api {
         headers: this.headers,
         body: JSON.stringify({ avatar: avatarUrl }),
       },
-    ).then((data) => {
-      if (data.ok) {
+    ).then((res) => {
+      if (res.ok) {
         onSuccess(avatarUrl);
+      } else {
+        return Promise.reject(`Ошибка: ${res.status}`);
       }
-    }).catch(() => {
-      alert("Ошибка обновления аватара");
+    }).catch((err) => {
+      return Promise.reject(`Ошибка: ${err}`);
     });
   }
 
@@ -69,12 +79,16 @@ export class Api {
         headers: this.headers,
         body: JSON.stringify(cardData),
       },
-    ).then((data) => {
-      data.json().then(data => {
-        onSuccess(data);
-      });
-    }).catch(() => {
-      alert("Пау-пау-пау-пааааау");
+    ).then((res) => {
+      if (res.ok) {
+        res.json().then(data => {
+          onSuccess(data);
+        });
+      } else {
+        return Promise.reject(`Ошибка: ${res.status}`);
+      }
+    }).catch((err) => {
+      return Promise.reject(`Ошибка: ${err}`);
     });
   }
 
@@ -85,16 +99,16 @@ export class Api {
         method: 'DELETE',
         headers: this.headers,
       },
-    ).then((data) => {
-      if (data.ok) {
-        data.json().then(data => {
+    ).then((res) => {
+      if (res.ok) {
+        res.json().then(data => {
           onSuccess(data);
         });
       } else {
-        alert("Пау-пау-пау-пааааау");
+        return Promise.reject(`Ошибка: ${res.status}`);
       }
-    }).catch(() => {
-      alert("Пау-пау-пау-пааааау");
+    }).catch((err) => {
+      return Promise.reject(`Ошибка: ${err}`);
     });
   }
 
@@ -105,17 +119,16 @@ export class Api {
         method: isDelete ? 'DELETE' : 'PUT',
         headers: this.headers,
       },
-    ).then((data) => {
-      if (data.ok) {
-        data.json().then(data => {
+    ).then((res) => {
+      if (res.ok) {
+        res.json().then(data => {
           onSuccess(data);
         });
       } else {
-        alert("Пау-пау-пау-пааааау");
+        return Promise.reject(`Ошибка: ${res.status}`);
       }
-    }).catch(() => {
-      alert("Пау-пау-пау-пааааау");
+    }).catch((err) => {
+      return Promise.reject(`Ошибка: ${err}`);
     });
   }
-
 }
