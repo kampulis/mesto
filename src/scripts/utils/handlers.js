@@ -29,9 +29,7 @@ export function handleAddMestoSubmit(e, values, onSuccess) {
 export function handleEditAvatar(e, values, onSuccess) {
   e.preventDefault();
 
-  const { link } = values;
-
-  api.updateEditAvatar(link, (avatarUrl) => {
+  api.updateEditAvatar(values['link-avatar'], (avatarUrl) => {
     onSuccess();
     fotoContainer.src = avatarUrl;
   });
