@@ -1,41 +1,38 @@
 import { disableSubmitButtons } from '../FormValidator.js';
 import { createCard } from './helpers.js';
-import { userInfo, section, allClasses, api, fotoContainer  } from './constants.js';
+import { userInfo, section, allClasses, api, fotoContainer } from './constants.js';
 
-export function handleProfileSubmit(evt, values) {
+export function handleProfileSubmit(evt, values, onSuccess) {
   evt.preventDefault();
 
   const { name, job } = values;
   userInfo.setUserInfo({ name, job });
-  api.updateEditProfile({ name, about: job });
+  api.updateEditProfile({ name, about: job }, onSuccess);
 }
 
-const onAddMestoSuccess = ({ name, link, likes, _id, owner }) => {
-  const { name: userName } = userInfo.getUserInfo();
-  const isOwner = userName === owner.name;
-  section.addItem(createCard(name, link, likes, _id, isOwner));
-  disableSubmitButtons(allClasses);
-}
-
-export function handleAddMestoSubmit(e, values) {
+export function handleAddMestoSubmit(e, values, onSuccess) {
   e.preventDefault();
   const { mesto, link } = values;
 
   api.addNewСard(
     { name: mesto, link },
-    onAddMestoSuccess,
+    ({ name, owner, likes, _id }) => {
+      onSuccess();
+      const { name: userName } = userInfo.getUserInfo();
+      const isOwner = userName === owner.name;
+      section.addItem(createCard(name, link, likes, _id, isOwner));
+      disableSubmitButtons(allClasses);
+    }
   );
 }
 
-const onAddAvatarSuccess = (avatarUrl) => {
-  fotoContainer.src = avatarUrl;
-};
-
-
-export function handleEditAvatar(e, values) {
+export function handleEditAvatar(e, values, onSuccess) {
   e.preventDefault();
 
   const { link } = values;
 
-  api.updateEditAvatar(link, onAddAvatarSuccess);
+  api.updateEditAvatar(link, (avatarUrl) => {
+    onSuccess();
+    fotoContainer.src = avatarUrl;
+  });
 }

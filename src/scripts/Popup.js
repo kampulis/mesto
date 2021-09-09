@@ -1,7 +1,14 @@
 const ESCAPE_KEYCODE = 27;
+
 export class Popup {
   constructor(selector) {
     this.popup = document.querySelector(selector);
+    this.submitButton = this.popup.querySelector('button[type="submit"]');
+
+    if (this.submitButton) {
+      this.defaultSubmitButtonText = this.submitButton.textContent;
+    }
+
     this.open = this.open.bind(this);
     this.close = this.close.bind(this);
     this._handleEscClose = this._handleEscClose.bind(this);
@@ -32,5 +39,15 @@ export class Popup {
         this.close();
       }
     });
+  }
+
+  updateSubmitButtonText(text) {
+    if (this.submitButton) {
+      this.submitButton.textContent = text;
+    }
+  }
+
+  resetSubmitButtonText() {
+    this.updateSubmitButtonText(this.defaultSubmitButtonText)
   }
 }

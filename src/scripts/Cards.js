@@ -6,8 +6,6 @@ export class Card {
     templateSelector,
     handleCardClick,
     handleDeleteClick,
-    handleSubmitDelete,
-    handleDiscardDelete
   ) {
     this.id = id;
     this.api = api;
@@ -19,8 +17,6 @@ export class Card {
 
     this.template = document.querySelector(templateSelector);
     this.handleCardClick = handleCardClick;
-    this.handleSubmitDelete = handleSubmitDelete;
-    this.handleDiscardDelete = handleDiscardDelete;
     this.handleDeleteClick = handleDeleteClick;
   }
 

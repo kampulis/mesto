@@ -24,7 +24,7 @@ export class Api {
       });
   }
 
-  updateEditProfile(profileData) {
+  updateEditProfile(profileData, onSuccess) {
     fetch(
       this.baseUrl + 'users/me/',
       {
@@ -32,10 +32,14 @@ export class Api {
         headers: this.headers,
         body: JSON.stringify(profileData),
       },
-    ).then(() => {
-      alert("Профиль успешно обновлен");
-    }).catch(() => {
-      alert("Ошибка обновления профиля");
+    ).then((res) => {
+      if (res.ok) {
+        onSuccess();
+      } else {
+        return Promise.reject(`Ошибка: ${res.status}`);
+      }
+    }).catch((err) => {
+      return Promise.reject(`Ошибка: ${err}`);
     });
   }
 
