@@ -73,14 +73,14 @@ export class Card {
   }
 
   _showTrash(newCard) {
-    if (this.currentUser.name === this.owner.name) {
+    if (this.currentUser._id === this.owner._id) {
       newCard.querySelector('.mesto-card__trash').style.display = "block"
     }
   }
 
   _showIsLiked(newCard) {
     const myLike = this.likes.find((elt) => {
-      const result = elt.name === this.currentUser.name;
+      const result = elt._id === this.currentUser._id;
       return result;
     });
     if (myLike) {
