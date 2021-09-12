@@ -5,6 +5,7 @@ export class PopupWithForm extends Popup {
     super(selector, validator);
     this.submitFormHandler = submitFormHandler;
     this.form = this.popup.querySelector('form');
+    this.validator = validator;
   }
 
   _getInputValues() {
@@ -18,6 +19,7 @@ export class PopupWithForm extends Popup {
 
   setEventListeners() {
     super.setEventListeners();
+    this.validator.enableValidations();
     this.form.addEventListener('submit', (e) => {
       this.updateSubmitButtonText('Сохранение...');
       this.submitFormHandler(e, this._getInputValues(), () => {
@@ -25,6 +27,12 @@ export class PopupWithForm extends Popup {
         this.resetSubmitButtonText();
       });
     })
+  }
+
+  open() {
+    super.open();
+    this.validator.clearErrors();
+    this.validator.toggleSubmitButtonState();
   }
 
   close() {
