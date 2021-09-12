@@ -10,18 +10,22 @@ import {
   forms,
   profileButton,
   profileButtonAdd,
-  nameContainer,
-  aboutContainer,
-  fotoContainer,
 } from '../scripts/utils/constants.js';
 import { handleProfileSubmit, handleAddMestoSubmit, handleEditAvatar } from '../scripts/utils/handlers.js';
 import { createCard } from '../scripts/utils/helpers.js';
 
 import './index.css';
 
+const popupEditAvatar = new PopupWithForm(".popup.popup_type_update", handleEditAvatar);
+
 export const userInfo = new UserInfo({
   nameSelector: allClasses.nameSelector,
-  aboutSelector: '.profile__info-subtitle',
+  aboutSelector: allClasses.aboutSelector,
+  fotoSelector: allClasses.fotoContainer,
+  handleClick: () => {
+    console.log('het')
+    popupEditAvatar.open();
+  },
 });
 
 export const popupWithImage = new PopupWithImage('.popup.popup_type_image');
@@ -38,12 +42,11 @@ export const api = new Api({
   }
 });
 
-const renderer = ({ name, link, likes, _id }, currentUser) => createCard(name, link, likes, _id, currentUser);
+const renderer = ({ name, link, likes, owner, _id }, currentUser) => createCard(name, link, likes, _id, owner, currentUser);
 export const section = new Section({ api, renderer, userInfo }, '.elements');
 
 const popupWithUserForm = new PopupWithForm('.popup.popup_type_edit', handleProfileSubmit, userInfo);
 const popupWithAddMestoForm = new PopupWithForm('.popup.popup_type_new-card', handleAddMestoSubmit, userInfo);
-const popupEditAvatar = new PopupWithForm(".popup.popup_type_update", handleEditAvatar);
 
 
 function setInputValues(userInfo) {
@@ -65,25 +68,17 @@ popupWithUserForm.setEventListeners();
 popupWithAddMestoForm.setEventListeners();
 popupSubmit.setEventListeners();
 popupEditAvatar.setEventListeners();
+userInfo.setEventListeners();
 
 profileButton.addEventListener('click', () => {
   popupWithUserForm.open();
   setInputValues(userInfo);
-
 });
-
-fotoContainer.addEventListener('click', () => {
-  popupEditAvatar.open();
-  setInputValues(userInfo);
-});
-
 
 profileButtonAdd.addEventListener('click', popupWithAddMestoForm.open)
 
 api.getInfoAboutPeople((data) => {
-  nameContainer.textContent = data.name;
-  aboutContainer.textContent = data.about;
-  fotoContainer.src = data.avatar;
+  userInfo.setUserInfo(data);
 
   section.initCards();
 });

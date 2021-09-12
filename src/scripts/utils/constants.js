@@ -6,6 +6,8 @@ export const allClasses = {
   inputErrorSelector: '.popup__name.popup__name_type_err',
   disabledButtonSelector: '.popup__container_new-card .popup__button',
   nameSelector: '.profile__info-title',
+  fotoContainer: '.profile__foto',
+  aboutSelector: '.profile__info-subtitle',
 };
 
 const profile = document.querySelector('.profile');
@@ -14,5 +16,4 @@ export const profileButtonAdd = document.querySelector(".profile__button-add");
 export const trashButton = document.querySelector('.mesto-card__trash');
 export const nameContainer = document.querySelector(allClasses.nameSelector);
 export const aboutContainer = document.querySelector('.profile__info-subtitle');
-export const fotoContainer = document.querySelector('.profile__foto');
 export const forms = Array.from(document.querySelectorAll(allClasses.formSelector));

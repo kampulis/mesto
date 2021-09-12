@@ -1,18 +1,27 @@
 export class UserInfo {
-  constructor({ nameSelector, aboutSelector }) {
+  constructor({ nameSelector, aboutSelector, fotoSelector, handleClick }) {
     this.profileTitle = document.querySelector(nameSelector);
     this.profileSubtitle = document.querySelector(aboutSelector);
+    this.fotoContainer = document.querySelector(fotoSelector);
+    this.handleClick = handleClick;
+  }
+
+  _updateUserInfoOnPage() {
+    this.profileTitle.textContent = this.userInfo.name;
+    this.profileSubtitle.textContent = this.userInfo.job;
+    this.fotoContainer.src = this.userInfo.avatar;
+  }
+
+  setUserInfo(userInfo) {
+    this.userInfo = userInfo;
+    this._updateUserInfoOnPage();
   }
 
   getUserInfo() {
-    return {
-      name: this.profileTitle.textContent,
-      about: this.profileSubtitle.textContent,
-    };
+    return this.userInfo;
   }
 
-  setUserInfo({ name, job }) {
-    this.profileTitle.textContent = name;
-    this.profileSubtitle.textContent = job;
+  setEventListeners() {
+    this.fotoContainer.addEventListener('click', this.handleClick);
   }
 }

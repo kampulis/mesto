@@ -67,7 +67,7 @@ export class Card {
   }
 
   _showTrash(newCard) {
-    if (this.currentUser.name === this.owner) {
+    if (this.currentUser.name === this.owner.name) {
       newCard.querySelector('.mesto-card__trash').style.display = "block"
     }
   }

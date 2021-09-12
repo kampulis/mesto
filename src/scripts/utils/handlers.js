@@ -7,8 +7,11 @@ export function handleProfileSubmit(evt, values, onSuccess) {
   evt.preventDefault();
 
   const { name, job } = values;
-  userInfo.setUserInfo({ name, job });
-  api.updateEditProfile({ name, about: job }, onSuccess);
+  
+  api.updateEditProfile({ name, about: job }, () => {
+    onSuccess();
+    userInfo.setUserInfo({ name, job });
+  });
 }
 
 export function handleAddMestoSubmit(e, values, onSuccess) {
