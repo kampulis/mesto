@@ -16,6 +16,5 @@ export const profileButtonAdd = document.querySelector(".profile__button-add");
 export const trashButton = document.querySelector('.mesto-card__trash');
 export const nameContainer = document.querySelector(allClasses.nameSelector);
 export const aboutContainer = document.querySelector('.profile__info-subtitle');
-export const forms = Array.from(document.querySelectorAll(allClasses.formSelector));
 export const nameInput = document.querySelector('#name');
 export const jobInput = document.querySelector('#job');

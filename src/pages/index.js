@@ -7,7 +7,6 @@ import { UserInfo } from '../scripts/components/UserInfo.js';
 import { Section } from '../scripts/components/Section.js';
 import {
   allClasses,
-  forms,
   profileButton,
   profileButtonAdd,
   nameInput,
@@ -18,19 +17,19 @@ import { createCard } from '../scripts/utils/helpers.js';
 
 import './index.css';
 
-const popupEditAvatar = new PopupWithForm(".popup.popup_type_update", handleEditAvatar);
+const popupEditAvatarSelector = ".popup.popup_type_update";
+const popupEditAvatar = new PopupWithForm(popupEditAvatarSelector, handleEditAvatar, new FormValidator(allClasses, popupEditAvatarSelector));
 
 export const userInfo = new UserInfo({
   nameSelector: allClasses.nameSelector,
   aboutSelector: allClasses.aboutSelector,
   fotoSelector: allClasses.fotoContainer,
   handleClick: popupEditAvatar.open,
+  fotoInputSelector: '.popup__name.popup__name_type_update',
 });
 
 export const popupWithImage = new PopupWithImage('.popup.popup_type_image');
-
 export const popupSubmit = new PopupWithSubmit('.popup.popup_type_confirm');
-// const popupAdd = document.querySelector(".popup_type_new-card");
 
 export const api = new Api({
   baseUrl: 'https://mesto.nomoreparties.co/v1/cohort-26/',
@@ -44,13 +43,11 @@ export const api = new Api({
 const renderer = ({ name, link, likes, owner, _id }, currentUser) => createCard(name, link, likes, _id, owner, currentUser);
 export const section = new Section({ api, renderer, userInfo }, '.elements');
 
-const popupWithUserForm = new PopupWithForm('.popup.popup_type_edit', handleProfileSubmit, userInfo);
-const popupWithAddMestoForm = new PopupWithForm('.popup.popup_type_new-card', handleAddMestoSubmit, userInfo);
+const popupWithUserFormSelector = '.popup.popup_type_edit';
+const popupWithUserForm = new PopupWithForm(popupWithUserFormSelector, handleProfileSubmit, new FormValidator(allClasses, popupWithUserFormSelector));
 
-forms.forEach(function (form) {
-  const formValidator = new FormValidator(allClasses, form);
-  formValidator.enableValidations();
-});
+const popupWithAddMestoFormSelector = '.popup.popup_type_new-card'
+const popupWithAddMestoForm = new PopupWithForm(popupWithAddMestoFormSelector, handleAddMestoSubmit, new FormValidator(allClasses, popupWithAddMestoFormSelector));
 
 popupWithImage.setEventListeners();
 popupWithUserForm.setEventListeners();
@@ -67,8 +64,8 @@ function setInputValues(userInfo, nameInput, jobInput) {
 }
 
 profileButton.addEventListener('click', () => {
-  popupWithUserForm.open();
   setInputValues(userInfo, nameInput, jobInput);
+  popupWithUserForm.open();
 });
 
 profileButtonAdd.addEventListener('click', popupWithAddMestoForm.open)

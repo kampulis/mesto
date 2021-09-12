@@ -1,6 +1,4 @@
-import { disableSubmitButtons } from '../components/FormValidator.js';
 import { createCard } from './helpers.js';
-import { allClasses } from './constants.js';
 import { userInfo, section, api } from '../../pages/index';
 
 export function handleProfileSubmit(evt, values, onSuccess) {
@@ -22,7 +20,6 @@ export function handleAddMestoSubmit(e, values, onSuccess) {
     onSuccess();
     const currentUser = userInfo.getUserInfo();
     section.addItem(createCard(name, link, likes, _id, owner, currentUser));
-    disableSubmitButtons(allClasses);
   }).catch((err) => {
     console.error('Не удалось добавить новую карточку', err);
   });

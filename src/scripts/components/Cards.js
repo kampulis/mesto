@@ -47,7 +47,9 @@ export class Card {
     const card = e.target.closest('.mesto-card');
 
     this.api.deleteCard(this.id)
-      .then(card.remove)
+      .then(() => {
+        card.remove();
+      })
       .catch((err) => {
         console.error('Не удалось удалить карточку', err);
       });
