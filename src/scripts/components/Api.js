@@ -5,35 +5,29 @@ export class Api {
   }
 
   getInitialCards(onSuccess) {
-    fetch(this.baseUrl + 'cards', { headers: this.headers })
+    return fetch(this.baseUrl + 'cards/', { headers: this.headers })
       .then((res) => {
         if (res.ok) {
           res.json().then(data => onSuccess(data));
         } else {
           return Promise.reject(`Ошибка: ${res.status}`);
         }
-      })
-      .catch((err) => {
-        return Promise.reject(`Ошибка: ${err}`);
       });
   }
 
   getInfoAboutPeople(onSuccess) {
-    fetch(this.baseUrl + 'users/me/', { headers: this.headers })
+    return fetch(this.baseUrl + 'users/me/', { headers: this.headers })
       .then((res) => {
         if (res.ok) {
           res.json().then(data => onSuccess(data));
         } else {
           return Promise.reject(`Ошибка: ${res.status}`);
         }
-      })
-      .catch((err) => {
-        return Promise.reject(`Ошибка: ${err}`);
       });
   }
 
   updateEditProfile(profileData, onSuccess) {
-    fetch(
+    return fetch(
       this.baseUrl + 'users/me/',
       {
         method: 'PATCH',
@@ -46,13 +40,11 @@ export class Api {
       } else {
         return Promise.reject(`Ошибка: ${res.status}`);
       }
-    }).catch((err) => {
-      return Promise.reject(`Ошибка: ${err}`);
     });
   }
 
   updateEditAvatar(avatarUrl, onSuccess) {
-    fetch(
+    return fetch(
       this.baseUrl + 'users/me/avatar',
       {
         method: 'PATCH',
@@ -65,14 +57,12 @@ export class Api {
       } else {
         return Promise.reject(`Ошибка: ${res.status}`);
       }
-    }).catch((err) => {
-      return Promise.reject(`Ошибка: ${err}`);
     });
   }
 
 
   addNewСard(cardData, onSuccess) {
-    fetch(
+    return fetch(
       this.baseUrl + 'cards',
       {
         method: 'POST',
@@ -87,13 +77,11 @@ export class Api {
       } else {
         return Promise.reject(`Ошибка: ${res.status}`);
       }
-    }).catch((err) => {
-      return Promise.reject(`Ошибка: ${err}`);
     });
   }
 
   deleteCard(cardId, onSuccess) {
-    fetch(
+    return fetch(
       this.baseUrl + 'cards/' + cardId,
       {
         method: 'DELETE',
@@ -107,13 +95,11 @@ export class Api {
       } else {
         return Promise.reject(`Ошибка: ${res.status}`);
       }
-    }).catch((err) => {
-      return Promise.reject(`Ошибка: ${err}`);
     });
   }
 
   updateLike(cardId, onSuccess, isDelete) {
-    fetch(
+    return fetch(
       this.baseUrl + 'cards/likes/' + cardId,
       {
         method: isDelete ? 'DELETE' : 'PUT',
@@ -127,8 +113,6 @@ export class Api {
       } else {
         return Promise.reject(`Ошибка: ${res.status}`);
       }
-    }).catch((err) => {
-      return Promise.reject(`Ошибка: ${err}`);
     });
   }
 }

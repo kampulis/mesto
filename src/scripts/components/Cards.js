@@ -30,11 +30,15 @@ export class Card {
       this.api.updateLike(this.id, (data) => {
         e.target.classList.remove('mesto-card__subtitle-icon_active');
         likeCountContainer.textContent = data.likes.length;
-      }, true);
+      }, true).catch((err) => {
+        console.error('Не удалось убрать лайк', err);
+      });
     } else {
       this.api.updateLike(this.id, (data) => {
         e.target.classList.add('mesto-card__subtitle-icon_active');
         likeCountContainer.textContent = data.likes.length;
+      }).catch((err) => {
+        console.error('Не удалось добавить лайк', err);
       });
     }
   }
@@ -44,6 +48,8 @@ export class Card {
 
     this.api.deleteCard(this.id, () => {
       card.remove();
+    }).catch((err) => {
+      console.error('Не удалось удалить карточку', err);
     });
   }
 

@@ -23,7 +23,6 @@ export const userInfo = new UserInfo({
   aboutSelector: allClasses.aboutSelector,
   fotoSelector: allClasses.fotoContainer,
   handleClick: () => {
-    console.log('het')
     popupEditAvatar.open();
   },
 });
@@ -80,5 +79,9 @@ profileButtonAdd.addEventListener('click', popupWithAddMestoForm.open)
 api.getInfoAboutPeople((data) => {
   userInfo.setUserInfo(data);
 
-  section.initCards();
+  section.initCards().catch((err) => {
+    console.error('Не удалось загрузить карточки', err);
+  });
+}).catch(err => {
+  console.error('Не удалось получить информацию о пользователе', err);
 });

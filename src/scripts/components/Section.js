@@ -8,7 +8,7 @@ export class Section {
   }
 
   initCards() {
-    this.api.getInitialCards(this.onSuccess);
+    return this.api.getInitialCards(this.onSuccess);
   }
 
   onSuccess(data) {
