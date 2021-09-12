@@ -1,5 +1,3 @@
-
-
 export class FormValidator {
   constructor(allClasses, form) {
     this.allClasses = allClasses;

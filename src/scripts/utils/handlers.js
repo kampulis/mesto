@@ -1,6 +1,7 @@
-import { disableSubmitButtons } from '../FormValidator.js';
+import { disableSubmitButtons } from '../components/FormValidator.js';
 import { createCard } from './helpers.js';
-import { userInfo, section, allClasses, api, fotoContainer } from './constants.js';
+import { allClasses, fotoContainer } from './constants.js';
+import { userInfo, section, api } from '../../pages/index';
 
 export function handleProfileSubmit(evt, values, onSuccess) {
   evt.preventDefault();
