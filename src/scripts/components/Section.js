@@ -4,16 +4,13 @@ export class Section {
     this.userInfo = userInfo;
     this.renderer = renderer;
     this.container = document.querySelector(selector);
-    this.onSuccess = this.onSuccess.bind(this);
   }
 
   initCards() {
-    return this.api.getInitialCards(this.onSuccess);
-  }
-
-  onSuccess(data) {
-    this.items = data;
-    this.render();
+    return this.api.getInitialCards().then(cards => {
+      this.items = cards;
+      this.render();
+    });
   }
 
   render() {

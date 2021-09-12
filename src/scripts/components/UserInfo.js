@@ -8,7 +8,7 @@ export class UserInfo {
 
   _updateUserInfoOnPage() {
     this.profileTitle.textContent = this.userInfo.name;
-    this.profileSubtitle.textContent = this.userInfo.job;
+    this.profileSubtitle.textContent = this.userInfo.about;
     this.fotoContainer.src = this.userInfo.avatar;
   }
 
@@ -23,5 +23,16 @@ export class UserInfo {
 
   setEventListeners() {
     this.fotoContainer.addEventListener('click', this.handleClick);
+  }
+
+  updateNameAndJob({ name, job }) {
+    this.userInfo.name = name;
+    this.userInfo.about = job;
+    this._updateUserInfoOnPage();
+  }
+
+  updateAvatarUrl(url) {
+    this.userInfo.avatar = url;
+    this._updateUserInfoOnPage();
   }
 }

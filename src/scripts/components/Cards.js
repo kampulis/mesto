@@ -27,14 +27,14 @@ export class Card {
     const likeCountContainer = likeContainer.querySelector('.mesto-card__subtitle-icon-like');
 
     if (e.target.classList.contains('mesto-card__subtitle-icon_active')) {
-      this.api.updateLike(this.id, (data) => {
+      this.api.updateLike(this.id, true).then((data) => {
         e.target.classList.remove('mesto-card__subtitle-icon_active');
         likeCountContainer.textContent = data.likes.length;
-      }, true).catch((err) => {
+      }).catch((err) => {
         console.error('Не удалось убрать лайк', err);
       });
     } else {
-      this.api.updateLike(this.id, (data) => {
+      this.api.updateLike(this.id).then((data) => {
         e.target.classList.add('mesto-card__subtitle-icon_active');
         likeCountContainer.textContent = data.likes.length;
       }).catch((err) => {
@@ -46,11 +46,11 @@ export class Card {
   _deleteCard(e) {
     const card = e.target.closest('.mesto-card');
 
-    this.api.deleteCard(this.id, () => {
-      card.remove();
-    }).catch((err) => {
-      console.error('Не удалось удалить карточку', err);
-    });
+    this.api.deleteCard(this.id)
+      .then(card.remove)
+      .catch((err) => {
+        console.error('Не удалось удалить карточку', err);
+      });
   }
 
   _onDeleteButtonClick(e) {

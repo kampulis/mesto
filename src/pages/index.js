@@ -10,6 +10,8 @@ import {
   forms,
   profileButton,
   profileButtonAdd,
+  nameInput,
+  jobInput,
 } from '../scripts/utils/constants.js';
 import { handleProfileSubmit, handleAddMestoSubmit, handleEditAvatar } from '../scripts/utils/handlers.js';
 import { createCard } from '../scripts/utils/helpers.js';
@@ -22,9 +24,7 @@ export const userInfo = new UserInfo({
   nameSelector: allClasses.nameSelector,
   aboutSelector: allClasses.aboutSelector,
   fotoSelector: allClasses.fotoContainer,
-  handleClick: () => {
-    popupEditAvatar.open();
-  },
+  handleClick: popupEditAvatar.open,
 });
 
 export const popupWithImage = new PopupWithImage('.popup.popup_type_image');
@@ -47,16 +47,6 @@ export const section = new Section({ api, renderer, userInfo }, '.elements');
 const popupWithUserForm = new PopupWithForm('.popup.popup_type_edit', handleProfileSubmit, userInfo);
 const popupWithAddMestoForm = new PopupWithForm('.popup.popup_type_new-card', handleAddMestoSubmit, userInfo);
 
-
-function setInputValues(userInfo) {
-  const nameInput = document.querySelector('#name');
-  const jobInput = document.querySelector('#job');
-  const { name, about } = userInfo.getUserInfo();
-
-  nameInput.value = name;
-  jobInput.value = about;
-}
-
 forms.forEach(function (form) {
   const formValidator = new FormValidator(allClasses, form);
   formValidator.enableValidations();
@@ -69,15 +59,22 @@ popupSubmit.setEventListeners();
 popupEditAvatar.setEventListeners();
 userInfo.setEventListeners();
 
+function setInputValues(userInfo, nameInput, jobInput) {
+  const { name, about } = userInfo.getUserInfo();
+
+  nameInput.value = name;
+  jobInput.value = about;
+}
+
 profileButton.addEventListener('click', () => {
   popupWithUserForm.open();
-  setInputValues(userInfo);
+  setInputValues(userInfo, nameInput, jobInput);
 });
 
 profileButtonAdd.addEventListener('click', popupWithAddMestoForm.open)
 
-api.getInfoAboutPeople((data) => {
-  userInfo.setUserInfo(data);
+api.getInfoAboutPeople().then((info) => {
+  userInfo.setUserInfo(info);
 
   section.initCards().catch((err) => {
     console.error('Не удалось загрузить карточки', err);

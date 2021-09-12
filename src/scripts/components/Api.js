@@ -4,29 +4,25 @@ export class Api {
     this.headers = headers;
   }
 
-  getInitialCards(onSuccess) {
+  _checkResponse(res) {
+    if (res.ok) {
+      return res.json();
+    } else {
+      return Promise.reject(`Ошибка: ${res.status}`);
+    }
+  }
+
+  getInitialCards() {
     return fetch(this.baseUrl + 'cards/', { headers: this.headers })
-      .then((res) => {
-        if (res.ok) {
-          res.json().then(data => onSuccess(data));
-        } else {
-          return Promise.reject(`Ошибка: ${res.status}`);
-        }
-      });
+      .then(this._checkResponse);
   }
 
-  getInfoAboutPeople(onSuccess) {
+  getInfoAboutPeople() {
     return fetch(this.baseUrl + 'users/me/', { headers: this.headers })
-      .then((res) => {
-        if (res.ok) {
-          res.json().then(data => onSuccess(data));
-        } else {
-          return Promise.reject(`Ошибка: ${res.status}`);
-        }
-      });
+      .then(this._checkResponse);
   }
 
-  updateEditProfile(profileData, onSuccess) {
+  updateEditProfile(profileData) {
     return fetch(
       this.baseUrl + 'users/me/',
       {
@@ -34,16 +30,10 @@ export class Api {
         headers: this.headers,
         body: JSON.stringify(profileData),
       },
-    ).then((res) => {
-      if (res.ok) {
-        onSuccess();
-      } else {
-        return Promise.reject(`Ошибка: ${res.status}`);
-      }
-    });
+    ).then(this._checkResponse);
   }
 
-  updateEditAvatar(avatarUrl, onSuccess) {
+  updateEditAvatar(avatarUrl) {
     return fetch(
       this.baseUrl + 'users/me/avatar',
       {
@@ -51,17 +41,10 @@ export class Api {
         headers: this.headers,
         body: JSON.stringify({ avatar: avatarUrl }),
       },
-    ).then((res) => {
-      if (res.ok) {
-        onSuccess(avatarUrl);
-      } else {
-        return Promise.reject(`Ошибка: ${res.status}`);
-      }
-    });
+    ).then(this._checkResponse);
   }
 
-
-  addNewСard(cardData, onSuccess) {
+  addNewСard(cardData) {
     return fetch(
       this.baseUrl + 'cards',
       {
@@ -69,50 +52,26 @@ export class Api {
         headers: this.headers,
         body: JSON.stringify(cardData),
       },
-    ).then((res) => {
-      if (res.ok) {
-        res.json().then(data => {
-          onSuccess(data);
-        });
-      } else {
-        return Promise.reject(`Ошибка: ${res.status}`);
-      }
-    });
+    ).then(this._checkResponse);
   }
 
-  deleteCard(cardId, onSuccess) {
+  deleteCard(cardId) {
     return fetch(
       this.baseUrl + 'cards/' + cardId,
       {
         method: 'DELETE',
         headers: this.headers,
       },
-    ).then((res) => {
-      if (res.ok) {
-        res.json().then(data => {
-          onSuccess(data);
-        });
-      } else {
-        return Promise.reject(`Ошибка: ${res.status}`);
-      }
-    });
+    ).then(this._checkResponse);
   }
 
-  updateLike(cardId, onSuccess, isDelete) {
+  updateLike(cardId, isDelete) {
     return fetch(
       this.baseUrl + 'cards/likes/' + cardId,
       {
         method: isDelete ? 'DELETE' : 'PUT',
         headers: this.headers,
       },
-    ).then((res) => {
-      if (res.ok) {
-        res.json().then(data => {
-          onSuccess(data);
-        });
-      } else {
-        return Promise.reject(`Ошибка: ${res.status}`);
-      }
-    });
+    ).then(this._checkResponse);
   }
 }
