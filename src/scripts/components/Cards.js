@@ -6,6 +6,7 @@ export class Card {
     templateSelector,
     handleCardClick,
     handleDeleteClick,
+    handleSubmitDeleteClick,
   ) {
     this.id = id;
     this.api = api;
@@ -18,6 +19,7 @@ export class Card {
     this.template = document.querySelector(templateSelector);
     this.handleCardClick = handleCardClick;
     this.handleDeleteClick = handleDeleteClick;
+    this.handleSubmitDeleteClick = handleSubmitDeleteClick;
   }
 
   /** Попап добавления новой карточки */
@@ -49,6 +51,7 @@ export class Card {
     this.api.deleteCard(this.id)
       .then(() => {
         card.remove();
+        this.handleSubmitDeleteClick();
       })
       .catch((err) => {
         console.error('Не удалось удалить карточку', err);

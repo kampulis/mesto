@@ -9,6 +9,7 @@ export function createCard(name, link, likes, id, owner, currentUser) {
     '#mesto-card',
     popupWithImage.open,
     popupSubmit.open,
+    popupSubmit.close,
   );
   return card.createMestoCard();
 }

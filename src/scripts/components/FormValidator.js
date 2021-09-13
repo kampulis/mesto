@@ -20,19 +20,14 @@ export class FormValidator {
     errorElement.textContent = input.validationMessage;
   }
 
-  _disableButton(button) {
-    button.disabled = true;
-  }
-
   _hideInputError(errorElement) {
     errorElement.textContent = "";
   }
 
   _addValidationsToInputs() {
     this.inputs.forEach(input => {
-      const inputElement = input.querySelector(this.allClasses.inputSelector)
       const errorElement = input.querySelector(this.allClasses.inputErrorSelector);
-      inputElement.addEventListener('input', (e) => {
+      input.addEventListener('input', (e) => {
         this._validateInput(e.target, errorElement);
       });
     })

@@ -7,37 +7,30 @@ export class UserInfo {
     this.handleClick = handleClick;
   }
 
-  _updateUserInfoOnPage() {
+  updateUserInfoOnPage() {
     this.profileTitle.textContent = this.userInfo.name;
     this.profileSubtitle.textContent = this.userInfo.about;
-    this.fotoInput.value = this.userInfo.avatar;
+    this.fotoInput.value = " ";
     this.fotoContainer.src = this.userInfo.avatar;
   }
 
   setUserInfo(userInfo) {
     this.userInfo = userInfo;
-    this._updateUserInfoOnPage();
+    this.updateUserInfoOnPage();
   }
 
   getUserInfo() {
     return this.userInfo;
   }
 
-  setEventListeners() {
-    this.fotoContainer.addEventListener('click', (e) => {
-      this._updateUserInfoOnPage();
-      this.handleClick(e);
-    });
-  }
-
   updateNameAndJob({ name, job }) {
     this.userInfo.name = name;
     this.userInfo.about = job;
-    this._updateUserInfoOnPage();
+    this.updateUserInfoOnPage();
   }
 
   updateAvatarUrl(url) {
     this.userInfo.avatar = url;
-    this._updateUserInfoOnPage();
+    this.updateUserInfoOnPage();
   }
 }

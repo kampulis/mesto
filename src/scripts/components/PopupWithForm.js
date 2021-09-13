@@ -22,10 +22,7 @@ export class PopupWithForm extends Popup {
     this.validator.enableValidations();
     this.form.addEventListener('submit', (e) => {
       this.updateSubmitButtonText('Сохранение...');
-      this.submitFormHandler(e, this._getInputValues(), () => {
-        this.close();
-        this.resetSubmitButtonText();
-      });
+      this.submitFormHandler(e, this._getInputValues(), this);
     })
   }
 

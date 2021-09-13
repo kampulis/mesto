@@ -54,7 +54,11 @@ popupWithUserForm.setEventListeners();
 popupWithAddMestoForm.setEventListeners();
 popupSubmit.setEventListeners();
 popupEditAvatar.setEventListeners();
-userInfo.setEventListeners();
+
+userInfo.fotoContainer.addEventListener('click', (e) => {
+  userInfo.updateUserInfoOnPage();
+  userInfo.handleClick(e);
+});
 
 function setInputValues(userInfo, nameInput, jobInput) {
   const { name, about } = userInfo.getUserInfo();
